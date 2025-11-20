@@ -16,7 +16,6 @@ body {
     grid-template-columns: 280px 1fr 320px;
     height: 100vh;
     width: 100%;
-    overflow: hidden;
 }
 
 .barra-lateral {
@@ -25,7 +24,7 @@ body {
     display: flex;
     flex-direction: column;
     border-right: 1px solid #eee;
-    overflow-y: auto;
+    overflow-y: hidden;
 }
 
 .marca h1 {
