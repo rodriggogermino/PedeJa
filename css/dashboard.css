@@ -25,7 +25,7 @@ body {
     display: flex;
     flex-direction: column;
     border-right: 1px solid #eee;
-    overflow-y: auto;
+    overflow-y: hidden;
 }
 
 .marca h1 {
