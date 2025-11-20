@@ -45,10 +45,9 @@ body {
 }
 
 hr {
-    border: 0;
     height: 1px;
     background: #ddd;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .grupo-input {

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - PedeJá</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="contentor-dashboard">
+        
+        <aside class="barra-lateral">
+            <div class="marca">
+                <h1><a href="admin_dashboard.html" style="text-decoration: none; color: inherit;">PedeJá</a></h1>
+            </div>
+
+            <div class="perfil-utilizador">
+                <div class="circulo-avatar">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="info-utilizador">
+                    <strong>Rodrigo Germino</strong>
+                    <span>Administrador</span>
+                </div>
+            </div>
+
+            <nav class="menu-navegacao">
+                <div class="etiqueta-menu">Menu</div>
+                <ul>
+                    <li><a href="admin_dashboard.html" class="ativo">Início</a></li>
+                    <li><a href="Artigos_admin.html">Artigos</a></li>
+                    <li><a href="Stock_admin.html">Stock</a></li>
+                    <li><a href="historico_admin.html">Histórico</a></li>
+                    <li><a href="pedidos_admin.html">Pedidos</a></li>
+                </ul>
+            </nav>
+
+            <div class="area-sair">
+                <a href="login.html">Sair <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+            </div>
+        </aside>
+
+
+        <main class="conteudo-principal">
+            <header class="cabecalho-topo">
+                <div class="saudacao">
+                    <h2>Olá, <br><strong>Rodrigo!</strong></h2>
+                </div>
+                <div class="etiqueta-modo">Modo ADMIN</div>
+            </header>
+
+            <div class="cartoes-acao">
+                <div class="cartao cartao-laranja">
+                    <div class="icone-topo"><i class="fa-solid fa-arrow-right"></i></div>
+                    <div class="texto-cartao">Editar Stock</div>
+                </div>
+                <div class="cartao cartao-amarelo">
+                    <div class="icone-topo"><i class="fa-solid fa-arrow-right"></i></div>
+                    <div class="texto-cartao">Ver Artigos</div>
+                </div>
+            </div>
+
+            <div class="seccao-historico">
+                <div class="cabecalho-historico">
+                    <h3>Histórico de Pedidos</h3>
+                    <div class="controlos">
+                        <div class="caixa-pesquisa">
+                            <input type="text" placeholder="Pesquisar">
+                        </div>
+                        <button class="botao-icone"><i class="fa-solid fa-bars"></i></button>
+                        <button class="botao-icone"><i class="fa-solid fa-filter"></i></button>
+                    </div>
+                </div>
+
+                <div class="lista-pedidos">
+                    <div class="linha-pedido">
+                        <div class="coluna"><strong>PEDIDO:</strong> 4</div>
+                        <div class="coluna"><strong>DATA:</strong> 2025/10/14</div>
+                        <div class="coluna"><strong>CLIENTE:</strong> BERNARDO M.</div>
+                        <div class="coluna estado-verde">ENTREGUE <i class="fa-solid fa-check"></i></div>
+                        <div class="coluna seta"><i class="fa-solid fa-arrow-right"></i></div>
+                    </div>
+                    <div class="linha-pedido">
+                        <div class="coluna"><strong>PEDIDO:</strong> 3</div>
+                        <div class="coluna"><strong>DATA:</strong> 2025/10/14</div>
+                        <div class="coluna"><strong>CLIENTE:</strong> SANDRO F.</div>
+                        <div class="coluna estado-verde">ENTREGUE <i class="fa-solid fa-check"></i></div>
+                        <div class="coluna seta"><i class="fa-solid fa-arrow-right"></i></div>
+                    </div>
+                    <div class="linha-pedido">
+                        <div class="coluna"><strong>PEDIDO:</strong> 2</div>
+                        <div class="coluna"><strong>DATA:</strong> 2025/09/24</div>
+                        <div class="coluna"><strong>CLIENTE:</strong> RODRIGO B.</div>
+                        <div class="coluna estado-verde">ENTREGUE <i class="fa-solid fa-check"></i></div>
+                        <div class="coluna seta"><i class="fa-solid fa-arrow-right"></i></div>
+                    </div>
+                    <div class="linha-pedido">
+                        <div class="coluna"><strong>PEDIDO:</strong> 1</div>
+                        <div class="coluna"><strong>DATA:</strong> 2025/09/13</div>
+                        <div class="coluna"><strong>CLIENTE:</strong> TOMÁS R.</div>
+                        <div class="coluna estado-verde">ENTREGUE <i class="fa-solid fa-check"></i></div>
+                        <div class="coluna seta"><i class="fa-solid fa-arrow-right"></i></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+
+        <aside class="painel-direito">
+            <div class="cabecalho-painel">
+                <h3>Pedidos<br>Recentes</h3>
+                <i class="fa-regular fa-clock icone-cabecalho"></i>
+            </div>
+
+            <div class="lista-recentes">
+                <div class="cartao-recente">
+                    <div class="cabecalho-rc">
+                        <span class="titulo-rc">Pedido nº 6</span>
+                        <span class="nome-rc">Guilherme H.</span>
+                    </div>
+                    <div class="rodape-rc">
+                        <span class="hora-rc">12h30</span>
+                        <button class="botao-ver">Ver</button>
+                    </div>
+                </div>
+
+                <div class="cartao-recente">
+                    <div class="cabecalho-rc">
+                        <span class="titulo-rc">Pedido nº 5</span>
+                        <span class="nome-rc">Cristiano R.</span>
+                    </div>
+                    <div class="rodape-rc">
+                        <span class="hora-rc">13h30</span>
+                        <button class="botao-ver">Ver</button>
+                    </div>
+                </div>
+
+                <div class="cartao-recente">
+                    <div class="cabecalho-rc">
+                        <span class="titulo-rc">Pedido nº 4</span>
+                        <span class="nome-rc">Ruben D.</span>
+                    </div>
+                    <div class="rodape-rc">
+                        <span class="hora-rc">14h30</span>
+                        <button class="botao-ver">Ver</button>
+                    </div>
+                </div>
+
+                <div class="cartao-recente">
+                    <div class="cabecalho-rc">
+                        <span class="titulo-rc">Pedido nº 3</span>
+                        <span class="nome-rc">Sandro F.</span>
+                    </div>
+                    <div class="rodape-rc">
+                        <span class="hora-rc">14h31</span>
+                        <button class="botao-ver">Ver</button>
+                    </div>
+                </div>
+
+                 <div class="cartao-recente">
+                    <div class="cabecalho-rc">
+                        <span class="titulo-rc">Pedido nº 1</span>
+                        <span class="nome-rc">Bernardo M.</span>
+                    </div>
+                    <div class="rodape-rc">
+                        <span class="hora-rc">15h30</span>
+                        <button class="botao-ver">Ver</button>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+    </div>
+    <script src="js/main.js"></script>
+    <script src="js/admin_dashboard.js"></script>
+</body>
+</html>
