@@ -232,7 +232,7 @@ body {
 .texto-negrito { font-weight: 800; color: #333; }
 
 .seccao-destaque .cartao {
-    flex: 0 0 220px;
+    flex: 0 0 320px;
     height: 130px;
     margin: 0;
 }

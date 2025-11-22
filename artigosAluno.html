@@ -20,19 +20,19 @@
                     <i class="fa-solid fa-user"></i>
                 </div>
                 <div class="info-utilizador">
-                    <strong>Rodrigo Germino</strong>
-                    <span>Administrador</span>
+                    <strong>Guilherme Henriques</strong>
+                    <span>Aluno</span>
                 </div>
             </div>
 
             <nav class="menu-navegacao">
                 <div class="etiqueta-menu">Menu</div>
                 <ul>
-                    <li><a href="dashboardAdmin.html">Início</a></li>
-                    <li><a href="#" class="ativo">Artigos</a></li>
-                    <li><a href="">Stock</a></li>
-                    <li><a href="">Histórico</a></li>
-                    <li><a href="">Pedidos</a></li>
+                    <li><a href="dashboardAluno.html">Início</a></li>
+                    <li><a href="artigosAluno.html" class="ativo">Artigos</a></li>
+                    <li><a href="#">Encomendar</a></li>
+                    <li><a href="#">Histórico</a></li>
+                    <li><a href="#">Carrinho</a></li>
                 </ul>
             </nav>
 
@@ -43,7 +43,7 @@
 
         <main class="conteudo-principal">
             <header class="cabecalho-pagina">
-                <h2>Olá,<br><strong>Rodrigo!</strong></h2>
+                <h2>Olá,<br><strong>Guilherme!</strong></h2>
             </header>
 
             <div class="caixa-conteudo">
@@ -67,8 +67,8 @@
                 </div>
 
                 <div class="grelha-produtos">
-                    <!--FRUTAS-->
                     <div class="cartao-produto" data-item="frutas">
+                        <button class="btn-favorito" onclick="toggleFavorito(this)"><i class="fa-solid fa-star"></i></button>
                         <div class="contentor-img">
                             <img src="images/Frutas/banana.png" alt="Banana">
                         </div>
@@ -80,8 +80,11 @@
                             </div>
                             <p class="desc-produto">Banana</p>
                         </div>
+                        <button class="btn-encomendar">Encomendar</button>
                     </div>
+
                     <div class="cartao-produto" data-item="frutas">
+                        <button class="btn-favorito" onclick="toggleFavorito(this)"><i class="fa-solid fa-star"></i></button>
                         <div class="contentor-img">
                             <img src="images/Frutas/laranja.png" alt="Laranja">
                         </div>
@@ -93,8 +96,11 @@
                             </div>
                             <p class="desc-produto">Laranja</p>
                         </div>
+                        <button class="btn-encomendar">Encomendar</button>
                     </div>
+
                     <div class="cartao-produto" data-item="frutas">
+                        <button class="btn-favorito" onclick="toggleFavorito(this)"><i class="fa-solid fa-star"></i></button>
                         <div class="contentor-img">
                             <img src="images/Frutas/maça.jpg" alt="Maça">
                         </div>
@@ -106,8 +112,11 @@
                             </div>
                             <p class="desc-produto">Maça</p>
                         </div>
+                        <button class="btn-encomendar">Encomendar</button>
                     </div>
+
                     <div class="cartao-produto" data-item="frutas">
+                        <button class="btn-favorito" onclick="toggleFavorito(this)"><i class="fa-solid fa-star"></i></button>
                         <div class="contentor-img">
                             <img src="images/Frutas/pera.jpg" alt="Pera">
                         </div>
@@ -119,9 +128,11 @@
                             </div>
                             <p class="desc-produto">Pera</p>
                         </div>
+                        <button class="btn-encomendar">Encomendar</button>
                     </div>
-                    <!--SALGADOS-->
+
                     <div class="cartao-produto" data-item="salgados">
+                        <button class="btn-favorito" onclick="toggleFavorito(this)"><i class="fa-solid fa-star"></i></button>
                         <div class="contentor-img">
                             <img src="images/Folhado/coxinha.png" alt="Coxinha">
                         </div>
@@ -133,8 +144,11 @@
                             </div>
                             <p class="desc-produto">Coxinha</p>
                         </div>
+                        <button class="btn-encomendar">Encomendar</button>
                     </div>
+
                     <div class="cartao-produto" data-item="salgados">
+                        <button class="btn-favorito" onclick="toggleFavorito(this)"><i class="fa-solid fa-star"></i></button>
                         <div class="contentor-img">
                             <img src="images/Folhado/croquete.png" alt="Croquete">
                         </div>
@@ -146,8 +160,11 @@
                             </div>
                             <p class="desc-produto">Croquete</p>
                         </div>
+                        <button class="btn-encomendar">Encomendar</button>
                     </div>
+
                     <div class="cartao-produto" data-item="salgados">
+                        <button class="btn-favorito" onclick="toggleFavorito(this)"><i class="fa-solid fa-star"></i></button>
                         <div class="contentor-img">
                             <img src="images/Folhado/folhado.png" alt="Mereda Mista">
                         </div>
@@ -159,8 +176,11 @@
                             </div>
                             <p class="desc-produto">Mereda Mista</p>
                         </div>
+                        <button class="btn-encomendar">Encomendar</button>
                     </div>
+
                     <div class="cartao-produto" data-item="salgados">
+                        <button class="btn-favorito" onclick="toggleFavorito(this)"><i class="fa-solid fa-star"></i></button>
                         <div class="contentor-img">
                             <img src="images/Folhado/folhadoSalsicha.png" alt="Folhado Salsicha">
                         </div>
@@ -172,8 +192,11 @@
                             </div>
                             <p class="desc-produto">Folhado Salsicha</p>
                         </div>
+                        <button class="btn-encomendar">Encomendar</button>
                     </div>
+
                     <div class="cartao-produto" data-item="salgados">
+                        <button class="btn-favorito" onclick="toggleFavorito(this)"><i class="fa-solid fa-star"></i></button>
                         <div class="contentor-img">
                             <img src="images/Folhado/rissois.png" alt="Rissois">
                         </div>
@@ -185,9 +208,11 @@
                             </div>
                             <p class="desc-produto">Rissois</p>
                         </div>
+                        <button class="btn-encomendar">Encomendar</button>
                     </div>
-                    <!--DOCES-->
+
                     <div class="cartao-produto" data-item="doces">
+                        <button class="btn-favorito" onclick="toggleFavorito(this)"><i class="fa-solid fa-star"></i></button>
                         <div class="contentor-img">
                             <img src="images/Doces/cokies.png" alt="Cookies">
                         </div>
@@ -199,8 +224,11 @@
                             </div>
                             <p class="desc-produto">Cookies</p>
                         </div>
+                        <button class="btn-encomendar">Encomendar</button>
                     </div>
+
                     <div class="cartao-produto" data-item="doces">
+                        <button class="btn-favorito" onclick="toggleFavorito(this)"><i class="fa-solid fa-star"></i></button>
                         <div class="contentor-img">
                             <img src="images/Doces/donut.png" alt="Donut">
                         </div>
@@ -212,8 +240,11 @@
                             </div>
                             <p class="desc-produto">Donut</p>
                         </div>
+                        <button class="btn-encomendar">Encomendar</button>
                     </div>
+
                     <div class="cartao-produto" data-item="doces">
+                        <button class="btn-favorito" onclick="toggleFavorito(this)"><i class="fa-solid fa-star"></i></button>
                         <div class="contentor-img">
                             <img src="images/Doces/donutOreo.png" alt="Donut de Oreo">
                         </div>
@@ -225,8 +256,11 @@
                             </div>
                             <p class="desc-produto">Donut de Oreo</p>
                         </div>
+                        <button class="btn-encomendar">Encomendar</button>
                     </div>
+
                     <div class="cartao-produto" data-item="doces">
+                        <button class="btn-favorito" onclick="toggleFavorito(this)"><i class="fa-solid fa-star"></i></button>
                         <div class="contentor-img">
                             <img src="images/Doces/Milfolhas.png" alt="Milfolhas">
                         </div>
@@ -238,8 +272,11 @@
                             </div>
                             <p class="desc-produto">Milfolhas</p>
                         </div>
+                        <button class="btn-encomendar">Encomendar</button>
                     </div>
+
                     <div class="cartao-produto" data-item="doces">
+                        <button class="btn-favorito" onclick="toggleFavorito(this)"><i class="fa-solid fa-star"></i></button>
                         <div class="contentor-img">
                             <img src="images/Doces/pampilho.png" alt="Pampilho">
                         </div>
@@ -251,8 +288,11 @@
                             </div>
                             <p class="desc-produto">Pampilho</p>
                         </div>
+                        <button class="btn-encomendar">Encomendar</button>
                     </div>
+
                     <div class="cartao-produto" data-item="doces">
+                        <button class="btn-favorito" onclick="toggleFavorito(this)"><i class="fa-solid fa-star"></i></button>
                         <div class="contentor-img">
                             <img src="images/Doces/pastelNata.png" alt="Pastel de Nata">
                         </div>
@@ -264,9 +304,11 @@
                             </div>
                             <p class="desc-produto">Pastel de Nata</p>
                         </div>
+                        <button class="btn-encomendar">Encomendar</button>
                     </div>
-                    <!--BEBIDAS-->
+
                     <div class="cartao-produto" data-item="bebidas">
+                        <button class="btn-favorito" onclick="toggleFavorito(this)"><i class="fa-solid fa-star"></i></button>
                         <div class="contentor-img">
                             <img src="images/Bebidas/agua50cl.png" alt="Agua Penacova 50cl">
                         </div>
@@ -278,8 +320,11 @@
                             </div>
                             <p class="desc-produto">Agua Penacova 50cl</p>
                         </div>
+                        <button class="btn-encomendar">Encomendar</button>
                     </div>
+
                     <div class="cartao-produto" data-item="bebidas">
+                        <button class="btn-favorito" onclick="toggleFavorito(this)"><i class="fa-solid fa-star"></i></button>
                         <div class="contentor-img">
                             <img src="images/Bebidas/café.png" alt="Café">
                         </div>
@@ -291,8 +336,11 @@
                             </div>
                             <p class="desc-produto">Café</p>
                         </div>
+                        <button class="btn-encomendar">Encomendar</button>
                     </div>
+
                     <div class="cartao-produto" data-item="bebidas">
+                        <button class="btn-favorito" onclick="toggleFavorito(this)"><i class="fa-solid fa-star"></i></button>
                         <div class="contentor-img">
                             <img src="images/Bebidas/cocaCola.png" alt="CocaCola">
                         </div>
@@ -304,8 +352,11 @@
                             </div>
                             <p class="desc-produto">CocaCola</p>
                         </div>
+                        <button class="btn-encomendar">Encomendar</button>
                     </div>
+
                     <div class="cartao-produto" data-item="bebidas">
+                        <button class="btn-favorito" onclick="toggleFavorito(this)"><i class="fa-solid fa-star"></i></button>
                         <div class="contentor-img">
                             <img src="images/Bebidas/compal.png" alt="Compal Laranja">
                         </div>
@@ -317,8 +368,11 @@
                             </div>
                             <p class="desc-produto">Compal Laranja do Algarve</p>
                         </div>
+                        <button class="btn-encomendar">Encomendar</button>
                     </div>
+
                     <div class="cartao-produto" data-item="bebidas">
+                        <button class="btn-favorito" onclick="toggleFavorito(this)"><i class="fa-solid fa-star"></i></button>
                         <div class="contentor-img">
                             <img src="images/Bebidas/iceTea.png" alt="IcedTea Lipton Pessego">
                         </div>
@@ -330,8 +384,11 @@
                             </div>
                             <p class="desc-produto">IcedTea Lipton de Pessego</p>
                         </div>
+                        <button class="btn-encomendar">Encomendar</button>
                     </div>
+
                     <div class="cartao-produto" data-item="bebidas">
+                        <button class="btn-favorito" onclick="toggleFavorito(this)"><i class="fa-solid fa-star"></i></button>
                         <div class="contentor-img">
                             <img src="images/Bebidas/redbull.png" alt="Redbull Original">
                         </div>
@@ -343,9 +400,11 @@
                             </div>
                             <p class="desc-produto">Redbull Sabor Original</p>
                         </div>
+                        <button class="btn-encomendar">Encomendar</button>
                     </div>
-                    <!--SANDES-->
+
                     <div class="cartao-produto" data-item="sandes">
+                        <button class="btn-favorito" onclick="toggleFavorito(this)"><i class="fa-solid fa-star"></i></button>
                         <div class="contentor-img">
                             <img src="images/Tostas/TostaFrango.jpg" alt="Tosta">
                         </div>
@@ -357,8 +416,11 @@
                             </div>
                             <p class="desc-produto">Pasta de frango, oregaos e manteiga</p>
                         </div>
+                        <button class="btn-encomendar">Encomendar</button>
                     </div>
+
                     <div class="cartao-produto" data-item="sandes">
+                        <button class="btn-favorito" onclick="toggleFavorito(this)"><i class="fa-solid fa-star"></i></button>
                         <div class="contentor-img">
                             <img src="images/Tostas/TostaDelicias.jpg" alt="Tosta">
                         </div>
@@ -370,8 +432,11 @@
                             </div>
                             <p class="desc-produto">Pasta de delícias, alface, ovo cozido</p>
                         </div>
+                        <button class="btn-encomendar">Encomendar</button>
                     </div>
+
                     <div class="cartao-produto" data-item="sandes">
+                        <button class="btn-favorito" onclick="toggleFavorito(this)"><i class="fa-solid fa-star"></i></button>
                         <div class="contentor-img">
                             <img src="images/Tostas/TostaMista.png" alt="Tosta">
                         </div>
@@ -383,8 +448,11 @@
                             </div>
                             <p class="desc-produto">Queijo, fiambre, manteiga</p>
                         </div>
+                        <button class="btn-encomendar">Encomendar</button>
                     </div>
+
                     <div class="cartao-produto" data-item="sandes">
+                        <button class="btn-favorito" onclick="toggleFavorito(this)"><i class="fa-solid fa-star"></i></button>
                         <div class="contentor-img">
                             <img src="images/Tostas/TostaAtum.jpg" alt="Tosta">
                         </div>
@@ -396,8 +464,11 @@
                             </div>
                             <p class="desc-produto">Pasta de atum, alface, ovo cozido</p>
                         </div>
+                        <button class="btn-encomendar">Encomendar</button>
                     </div>
+
                     <div class="cartao-produto" data-item="sandes">
+                        <button class="btn-favorito" onclick="toggleFavorito(this)"><i class="fa-solid fa-star"></i></button>
                         <div class="contentor-img">
                             <img src="images/Tostas/BaguetePresunto.jpg" alt="Baguete">
                         </div>
@@ -408,8 +479,11 @@
                                 <span class="preco-produto">1,50 €</span>
                             </div>
                         </div>
+                        <button class="btn-encomendar">Encomendar</button>
                     </div>
+
                     <div class="cartao-produto" data-item="sandes">
+                        <button class="btn-favorito" onclick="toggleFavorito(this)"><i class="fa-solid fa-star"></i></button>
                         <div class="contentor-img">
                             <img src="images/Tostas/" alt="Baguete">
                         </div>
@@ -420,8 +494,11 @@
                                 <span class="preco-produto">1,50 €</span>
                             </div>
                         </div>
+                        <button class="btn-encomendar">Encomendar</button>
                     </div>
+
                     <div class="cartao-produto" data-item="sandes">
+                        <button class="btn-favorito" onclick="toggleFavorito(this)"><i class="fa-solid fa-star"></i></button>
                         <div class="contentor-img">
                             <img src="images/Tostas/BagueteMista.png" alt="Baguete">
                         </div>
@@ -432,8 +509,11 @@
                                 <span class="preco-produto">1,50 €</span>
                             </div>
                         </div>
+                        <button class="btn-encomendar">Encomendar</button>
                     </div>
+
                     <div class="cartao-produto" data-item="sandes">
+                        <button class="btn-favorito" onclick="toggleFavorito(this)"><i class="fa-solid fa-star"></i></button>
                         <div class="contentor-img">
                             <img src="images/Tostas/" alt="Baguete">
                         </div>
@@ -444,9 +524,11 @@
                                 <span class="preco-produto">1,50 €</span>
                             </div>
                         </div>
+                        <button class="btn-encomendar">Encomendar</button>
                     </div>
-                    <!--OUTROS-->
+
                     <div class="cartao-produto" data-item="outros">
+                        <button class="btn-favorito" onclick="toggleFavorito(this)"><i class="fa-solid fa-star"></i></button>
                         <div class="contentor-img">
                             <img src="images/Outros/hallsOG.png" alt="Halls Original">
                         </div>
@@ -457,8 +539,11 @@
                                 <span class="preco-produto">1,10 €</span>
                             </div>
                         </div>
+                        <button class="btn-encomendar">Encomendar</button>
                     </div>
+
                     <div class="cartao-produto" data-item="outros">
+                        <button class="btn-favorito" onclick="toggleFavorito(this)"><i class="fa-solid fa-star"></i></button>
                         <div class="contentor-img">
                             <img src="images/Outros/kinderBueno.png" alt="Kinder Bueno">
                         </div>
@@ -469,8 +554,11 @@
                                 <span class="preco-produto">1,10 €</span>
                             </div>
                         </div>
+                        <button class="btn-encomendar">Encomendar</button>
                     </div>
+
                     <div class="cartao-produto" data-item="outros">
+                        <button class="btn-favorito" onclick="toggleFavorito(this)"><i class="fa-solid fa-star"></i></button>
                         <div class="contentor-img">
                             <img src="images/Outros/pastilha.png" alt="Trident Menta">
                         </div>
@@ -481,11 +569,17 @@
                                 <span class="preco-produto">1,10 €</span>
                             </div>
                         </div>
+                        <button class="btn-encomendar">Encomendar</button>
                     </div>
                 </div>
             </div>
         </main>
     </div>
     <script src="js/catProduto.js"></script>
+    <script>
+        function toggleFavorito(botao) {
+            botao.classList.toggle('favorito-ativo');
+        }
+    </script>
 </body>
 </html>
