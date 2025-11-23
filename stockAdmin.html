@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock - PedeJá</title>
+    <link rel="stylesheet" href="css/artigos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="contentor-dashboard">
+        
+        <aside class="barra-lateral">
+            <div class="marca">
+                <h1><a href="admin_dashboard.html">PedeJá</a></h1>
+            </div>
+
+            <div class="perfil-utilizador">
+                <div class="circulo-avatar">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="info-utilizador">
+                    <strong>Rodrigo Germino</strong>
+                    <span>Administrador</span>
+                </div>
+            </div>
+
+            <nav class="menu-navegacao">
+                <div class="etiqueta-menu">Menu</div>
+                <ul>
+                    <li><a href="dashboardAdmin.html">Início</a></li>
+                    <li><a href="artigosAdmin.html">Artigos</a></li>
+                    <li><a href="stockAdmin.html" class="ativo">Stock</a></li>
+                    <li><a href="#">Histórico</a></li>
+                    <li><a href="#">Pedidos</a></li>
+                </ul>
+            </nav>
+
+            <div class="area-sair">
+                <a href="login.html">Sair <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+            </div>
+        </aside>
+
+        <main class="conteudo-principal">
+            
+            <header class="cabecalho-pagina">
+                <h2>Olá, <br><strong>Rodrigo!</strong></h2>
+            </header>
+
+            <div class="caixa-conteudo">
+                
+                <div class="cabecalho-caixa">
+                    <div class="lado-esquerdo-cabecalho" style="display: flex; align-items: center; gap: 15px;">
+                        <h3>Todos os artigos:</h3>
+                        <button class="botao-adicionar" style="width: 30px; height: 30px; border-radius: 50%; border: none; background: #e85d04; color: white; cursor: pointer;"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                    <div class="pesquisa-pill">
+                        <input type="text" placeholder="Pesquisar">
+                    </div>
+                </div>
+
+                <div class="filtro-categoria">
+                    <span class="etiqueta-cat">Categorias</span>
+                    <ul class="lista-cat">
+                        <li>Frutas</li>
+                        <li>Salgados</li>
+                        <li>Doces</li>
+                        <li class="cat-ativa">Bebidas</li>
+                        <li>Sandes</li>
+                        <li>Outros</li>
+                    </ul>
+                </div>
+
+                <div class="grelha-produtos">
+                    
+                    <div class="cartao-stock">
+                        <button class="botao-fechar"><i class="fa-solid fa-xmark"></i></button>
+                        
+                        <div class="conteudo-cartao">
+                            <div class="envoltorio-imagem">
+                                <img src="https://via.placeholder.com/100x150?text=CocaCola" alt="CocaCola">
+                            </div>
+                            <div class="envoltorio-info">
+                                <h4>CocaCola</h4>
+                                <span>Bebidas</span>
+                            </div>
+                        </div>
+
+                        <div class="envoltorio-contador">
+                            <button class="botao-contador"><i class="fa-solid fa-minus"></i></button>
+                            <div class="mostrador-contagem">8</div>
+                            <button class="botao-contador"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="cartao-stock">
+                        <button class="botao-fechar"><i class="fa-solid fa-xmark"></i></button>
+                        
+                        <div class="conteudo-cartao">
+                            <div class="envoltorio-imagem">
+                                <img src="https://via.placeholder.com/100x150?text=Redbull" alt="Redbull">
+                            </div>
+                            <div class="envoltorio-info">
+                                <h4>Redbull</h4>
+                                <span>Bebidas</span>
+                            </div>
+                        </div>
+
+                        <div class="envoltorio-contador">
+                            <button class="botao-contador"><i class="fa-solid fa-minus"></i></button>
+                            <div class="mostrador-contagem">5</div>
+                            <button class="botao-contador"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="cartao-stock">
+                        <button class="botao-fechar"><i class="fa-solid fa-xmark"></i></button>
+                        
+                        <div class="conteudo-cartao">
+                            <div class="envoltorio-imagem">
+                                <img src="https://via.placeholder.com/100x150?text=Agua+1.5L" alt="Agua">
+                            </div>
+                            <div class="envoltorio-info">
+                                <h4>Água 1,5L</h4>
+                                <span>Bebidas</span>
+                            </div>
+                        </div>
+
+                        <div class="envoltorio-contador">
+                            <button class="botao-contador"><i class="fa-solid fa-minus"></i></button>
+                            <div class="mostrador-contagem">2</div>
+                            <button class="botao-contador"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="cartao-stock">
+                        <button class="botao-fechar"><i class="fa-solid fa-xmark"></i></button>
+                        
+                        <div class="conteudo-cartao">
+                            <div class="envoltorio-imagem">
+                                <img src="https://via.placeholder.com/100x150?text=Agua+50cl" alt="Agua">
+                            </div>
+                            <div class="envoltorio-info">
+                                <h4>Água 50cl</h4>
+                                <span>Bebidas</span>
+                            </div>
+                        </div>
+
+                        <div class="envoltorio-contador">
+                            <button class="botao-contador"><i class="fa-solid fa-minus"></i></button>
+                            <div class="mostrador-contagem">16</div>
+                            <button class="botao-contador"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="js/main.js"></script>
+    <script src="js/stock_admin.js"></script>
+</body>
+</html>
