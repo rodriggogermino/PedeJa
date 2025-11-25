@@ -13,7 +13,7 @@
         
         <aside class="barra-lateral">
             <div class="marca">
-                <h1><a href="admin_dashboard.html">PedeJá</a></h1>
+                <h1><a href="dashboardAdmin.html">PedeJá</a></h1>
             </div>
 
             <div class="perfil-utilizador">
@@ -31,7 +31,7 @@
                 <ul>
                     <li><a href="dashboardAdmin.html">Início</a></li>
                     <li><a href="artigosAdmin.html">Artigos</a></li>
-                    <li><a href="stockAdmin.html" class="ativo">Stock</a></li>
+                    <li><a href="#" class="ativo">Stock</a></li>
                     <li><a href="#">Histórico</a></li>
                     <li><a href="#">Pedidos</a></li>
                 </ul>
@@ -63,23 +63,25 @@
                 <div class="filtro-categoria">
                     <span class="etiqueta-cat">Categorias</span>
                     <ul class="lista-cat">
-                        <li>Frutas</li>
-                        <li>Salgados</li>
-                        <li>Doces</li>
-                        <li class="cat-ativa">Bebidas</li>
-                        <li>Sandes</li>
-                        <li>Outros</li>
+                        <li data-category="frutas">Frutas</li>
+                        <li data-category="salgados">Salgados</li>
+                        <li data-category="doces">Doces</li>
+                        <li data-category="bebidas">Bebidas</li>
+                        <li data-category="sandes">Sandes</li>
+                        <li data-category="outros">Outros</li>
                     </ul>
                 </div>
 
                 <div class="grelha-produtos">
                     
-                    <div class="cartao-stock">
+                    <div class="cartao-stock" data-item="bebidas">
                         <button class="botao-fechar"><i class="fa-solid fa-xmark"></i></button>
                         
                         <div class="conteudo-cartao">
                             <div class="envoltorio-imagem">
-                                <img src="https://via.placeholder.com/100x150?text=CocaCola" alt="CocaCola">
+                                <img src="images/Bebidas/cocaCola.png
+                                
+                                " alt="CocaCola">
                             </div>
                             <div class="envoltorio-info">
                                 <h4>CocaCola</h4>
@@ -88,18 +90,18 @@
                         </div>
 
                         <div class="envoltorio-contador">
-                            <button class="botao-contador"><i class="fa-solid fa-minus"></i></button>
+                            <button class="botao-contador" onclick="diminuirStock()"><i class="fa-solid fa-minus"></i></button>
                             <div class="mostrador-contagem">8</div>
-                            <button class="botao-contador"><i class="fa-solid fa-plus"></i></button>
+                            <button class="botao-contador" onclick="aumentarStock()"><i class="fa-solid fa-plus"></i></button>
                         </div>
                     </div>
 
-                    <div class="cartao-stock">
+                    <div class="cartao-stock" data-item="bebidas">
                         <button class="botao-fechar"><i class="fa-solid fa-xmark"></i></button>
                         
                         <div class="conteudo-cartao">
                             <div class="envoltorio-imagem">
-                                <img src="https://via.placeholder.com/100x150?text=Redbull" alt="Redbull">
+                                <img src="images/Bebidas/redbull.png" alt="Redbull">
                             </div>
                             <div class="envoltorio-info">
                                 <h4>Redbull</h4>
@@ -114,15 +116,15 @@
                         </div>
                     </div>
 
-                    <div class="cartao-stock">
+                    <div class="cartao-stock" data-item="bebidas">
                         <button class="botao-fechar"><i class="fa-solid fa-xmark"></i></button>
                         
                         <div class="conteudo-cartao">
                             <div class="envoltorio-imagem">
-                                <img src="https://via.placeholder.com/100x150?text=Agua+1.5L" alt="Agua">
+                                <img src="images/Bebidas/compal.png" alt="Compal Laranja">
                             </div>
                             <div class="envoltorio-info">
-                                <h4>Água 1,5L</h4>
+                                <h4>Compal Laranja</h4>
                                 <span>Bebidas</span>
                             </div>
                         </div>
@@ -134,12 +136,12 @@
                         </div>
                     </div>
 
-                    <div class="cartao-stock">
+                    <div class="cartao-stock" data-item="bebidas">
                         <button class="botao-fechar"><i class="fa-solid fa-xmark"></i></button>
-                        
+                    
                         <div class="conteudo-cartao">
                             <div class="envoltorio-imagem">
-                                <img src="https://via.placeholder.com/100x150?text=Agua+50cl" alt="Agua">
+                                <img src="images/Bebidas/agua50cl.png" alt="Agua">
                             </div>
                             <div class="envoltorio-info">
                                 <h4>Água 50cl</h4>
@@ -158,7 +160,7 @@
             </div>
         </main>
     </div>
-    <script src="js/main.js"></script>
-    <script src="js/stock_admin.js"></script>
+
+    <script src="js/catProduto.js"></script>
 </body>
 </html>
