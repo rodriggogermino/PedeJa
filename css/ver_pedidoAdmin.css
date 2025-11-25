@@ -196,22 +196,16 @@ body {
 }
 
 .seccao-estado {
-    padding: 20px;
-    background-color: #fff5eb; /* Fundo suave */
-    border: 1px solid #fec48f;
-    border-radius: 15px;
     margin-bottom: 30px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 15px;
+    gap: 10px;
 }
 
 .texto-estado {
     font-size: 24px;
-    font-weight: 800;
-    color: #2f9e44; /* Verde para entregue */
-    text-transform: uppercase;
+    font-weight: 600;
+    color: #ccc; /* Verde para entregue */
     letter-spacing: 1px;
 }
 
@@ -257,13 +251,13 @@ body {
     background-color: #333;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 8px 15px;
     border-radius: 12px;
     font-weight: 600;
     cursor: pointer;
     font-size: 15px;
     transition: background-color 0.3s;
-    margin-top: 10px;
+    width: 30%;
 }
 
 .btn-atualizar:hover {

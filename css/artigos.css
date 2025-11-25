@@ -569,7 +569,6 @@ body {
     text-align: center;
 }
 
-/* Botões de Ação */
 .linha-botoes {
     display: flex;
     gap: 15px;

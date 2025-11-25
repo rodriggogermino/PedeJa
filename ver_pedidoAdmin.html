@@ -58,21 +58,21 @@
                         <h3 class="titulo-seccao">Estado do<br>pedido</h3>
 
                         <div class="seccao-estado">
-                            <span class="texto-estado">Entregue</span>
+                            <span class="texto-estado">Em Preparação</span>
 
                             <div class="barra-progresso">
                                 <div class="passo ativo"></div>
-                                <div class="linha ativo"></div>
-                                <div class="passo ativo"></div>
-                                <div class="linha ativo"></div>
-                                <div class="passo ativo"></div>
+                                <div class="linha"></div>
+                                <div class="passo"></div>
+                                <div class="linha"></div>
+                                <div class="passo"></div>
                             </div>
 
-                            <button class="btn-atualizar">Atualizar</button>
+                            <button class="btn-atualizar" onclick="mudarEstado()">Atualizar</button>
                         </div>
 
                         <div class="info-pedido">
-                            <p class="linha-info total-linha">Total: <strong>6,55€</strong></p>
+                            <p class="linha-info">Total: <strong>6,55€</strong></p>
                             <p class="linha-info">ID Pedido: <strong>3</strong></p>
                             <p class="linha-info">Nome: <strong>Sandro Filipe</strong></p>
                             <p class="linha-info">Hora agendada: <strong>12h50</strong></p>
@@ -135,5 +135,7 @@
             </div>
         </main>
     </div>
+
+    <script src="js/script.js"></script>
 </body>
 </html>

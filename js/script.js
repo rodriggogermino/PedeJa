@@ -10,3 +10,7 @@ function entrar() {
         alert("Dados incorretos!")
     }
 }
+
+function mudarEstado() {
+    
+}
