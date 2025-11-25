@@ -24,6 +24,7 @@ function mudarEstado() {
             linhas[0].classList.add("ativo");
         } else {
             elem.innerText = "Entregue"
+            elem.style.color = "#e85d04"   
             linhas[1].classList.add("ativo");
             passos[2].classList.add("ativo");
         }
