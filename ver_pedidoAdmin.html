@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Pedido - PedeJá</title>
+    <link rel="stylesheet" href="css/ver_pedidoAdmin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="contentor-dashboard">
+
+        <aside class="barra-lateral">
+            <div class="marca">
+                <h1><a href="dashboardAdmin.html">PedeJá</a></h1>
+            </div>
+
+            <div class="perfil-utilizador">
+                <div class="circulo-avatar">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="info-utilizador">
+                    <strong>Rodrigo Germino</strong>
+                    <span>Administrador</span>
+                </div>
+            </div>
+
+            <nav class="menu-navegacao">
+                <div class="etiqueta-menu">Menu</div>
+                <ul>
+                    <li><a href="dashboardAdmin.html">Início</a></li>
+                    <li><a href="artigosAdmin.html">Artigos</a></li>
+                    <li><a href="stockAdmin.html">Stock</a></li>
+                    <li><a href="historicoAdmin.html">Histórico</a></li>
+                    <li><a href="pedidosAdmin.html" class="ativo">Pedidos</a></li>
+                </ul>
+            </nav>
+
+            <div class="area-sair">
+                <a href="login.html">Sair <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+            </div>
+        </aside>
+
+
+        <main class="conteudo-principal">
+
+            <header class="cabecalho-pagina">
+                <h2>Olá, <br><strong>Rodrigo!</strong></h2>
+            </header>
+
+            <div class="caixa-conteudo">
+
+                <div class="grelha-detalhes">
+
+                    <div class="coluna-esquerda">
+
+                        <h3 class="titulo-seccao">Estado do<br>pedido</h3>
+
+                        <div class="seccao-estado">
+                            <span class="texto-estado">Entregue</span>
+
+                            <div class="barra-progresso">
+                                <div class="passo ativo"></div>
+                                <div class="linha ativo"></div>
+                                <div class="passo ativo"></div>
+                                <div class="linha ativo"></div>
+                                <div class="passo ativo"></div>
+                            </div>
+
+                            <button class="btn-atualizar">Atualizar</button>
+                        </div>
+
+                        <div class="info-pedido">
+                            <p class="linha-info total-linha">Total: <strong>6,55€</strong></p>
+                            <p class="linha-info">ID Pedido: <strong>3</strong></p>
+                            <p class="linha-info">Nome: <strong>Sandro Filipe</strong></p>
+                            <p class="linha-info">Hora agendada: <strong>12h50</strong></p>
+                            <p class="linha-info">Pagamento: <strong>Ao Balcão</strong></p>
+                        </div>
+
+                    </div>
+
+                    <div class="coluna-direita">
+                        <h3 class="titulo-seccao">Artigos pedidos</h3>
+
+                        <div class="lista-artigos">
+
+                            <div class="cartao-artigo">
+                                <div class="img-artigo">
+                                    <img src="images/Tostas/TostaFrango.jpg" alt="Tosta">
+                                </div>
+                                <div class="detalhes-artigo">
+                                    <h4>Tosta de Frango</h4>
+                                    <span class="desc-artigo">Pasta de frango, alface, ovo cozido</span>
+                                </div>
+                                <div class="preco-qty-artigo">
+                                    <span class="preco">1,90 €</span>
+                                    <span class="distintivo-qty">2</span>
+                                </div>
+                            </div>
+
+                            <div class="cartao-artigo">
+                                <div class="img-artigo">
+                                    <img src="images/Bebidas/redbull.png" alt="Redbull">
+                                </div>
+                                <div class="detalhes-artigo">
+                                    <h4>RedBull</h4>
+                                    <span class="desc-artigo"></span>
+                                </div>
+                                <div class="preco-qty-artigo">
+                                    <span class="preco">2,00 €</span>
+                                    <span class="distintivo-qty">1</span>
+                                </div>
+                            </div>
+
+                            <div class="cartao-artigo">
+                                <div class="img-artigo">
+                                    <img src="images/Bebidas/agua50cl.png" alt="Agua">
+                                </div>
+                                <div class="detalhes-artigo">
+                                    <h4>Água 50cl</h4>
+                                    <span class="desc-artigo"></span>
+                                </div>
+                                <div class="preco-qty-artigo">
+                                    <span class="preco">0,75 €</span>
+                                    <span class="distintivo-qty">1</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
