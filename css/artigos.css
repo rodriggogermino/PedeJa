@@ -458,3 +458,146 @@ body {
     width: 30px;
     text-align: center;
 }
+
+.titulo-seccao {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.layout-formulario {
+    display: flex;
+    gap: 40px;
+    height: 100%;
+    overflow-y: auto;
+}
+
+/* Zona de Upload (Esquerda) */
+.zona-upload-imagem {
+    flex: 1;
+    border: 2px dashed #ccc;
+    border-radius: 15px;
+    background-color: #fafafa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    transition: border-color 0.3s;
+    cursor: pointer;
+}
+
+.zona-upload-imagem:hover {
+    border-color: #e85d04;
+    background-color: #fff5eb;
+}
+
+.placeholder-upload {
+    text-align: center;
+    color: #888;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.icone-upload {
+    font-size: 40px;
+    margin-bottom: 15px;
+    color: #ccc;
+}
+
+.zona-upload-imagem:hover .icone-upload {
+    color: #e85d04;
+}
+
+/* Campos (Direita) */
+.zona-campos {
+    flex: 1.5;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.grupo-input {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.grupo-input label {
+    font-weight: 600;
+    font-size: 14px;
+    color: #333;
+}
+
+.input-estilizado {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    outline: none;
+    font-size: 14px;
+    transition: border-color 0.3s;
+    background-color: #fff;
+    width: 100%;
+}
+
+.input-estilizado:focus {
+    border-color: #e85d04;
+}
+
+.input-textarea {
+    height: 100px;
+    resize: none;
+}
+
+.grupo-linha {
+    display: flex;
+    gap: 20px;
+}
+
+.metade-largura {
+    flex: 1;
+}
+
+.texto-centrado {
+    text-align: center;
+}
+
+/* Botões de Ação */
+.linha-botoes {
+    display: flex;
+    gap: 15px;
+    margin-top: auto;
+    padding-top: 20px;
+}
+
+.botao {
+    padding: 12px 30px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.botao:hover {
+    opacity: 0.9;
+}
+
+.botao-adicionar-form {
+    background-color: #e85d04;
+    color: white;
+    flex: 1;
+}
+
+.botao-cancelar {
+    background-color: #eee;
+    color: #666;
+}

@@ -32,7 +32,7 @@
                     <li><a href="dashboardAdmin.html">Início</a></li>
                     <li><a href="artigosAdmin.html">Artigos</a></li>
                     <li><a href="#" class="ativo">Stock</a></li>
-                    <li><a href="#">Histórico</a></li>
+                    <li><a href="historicoAdmin.html">Histórico</a></li>
                     <li><a href="#">Pedidos</a></li>
                 </ul>
             </nav>
@@ -53,7 +53,7 @@
                 <div class="cabecalho-caixa">
                     <div class="lado-esquerdo-cabecalho" style="display: flex; align-items: center; gap: 15px;">
                         <h3>Todos os artigos:</h3>
-                        <button class="botao-adicionar" style="width: 30px; height: 30px; border-radius: 50%; border: none; background: #e85d04; color: white; cursor: pointer;"><i class="fa-solid fa-plus"></i></button>
+                        <button class="botao-adicionar" onclick="location.href='addArtigo.html'" style="width: 30px; height: 30px; border-radius: 50%; border: none; background: #e85d04; color: white; cursor: pointer;"><i class="fa-solid fa-plus"></i></button>
                     </div>
                     <div class="pesquisa-pill">
                         <input type="text" placeholder="Pesquisar">
@@ -156,6 +156,504 @@
                         </div>
                     </div>
 
+                    <div class="cartao-stock" data-item="doces">
+                        <button class="botao-fechar"><i class="fa-solid fa-xmark"></i></button>
+                    
+                        <div class="conteudo-cartao">
+                            <div class="envoltorio-imagem">
+                                <img src="images/Doces/cokies.png" alt="Cookies">
+                            </div>
+                            <div class="envoltorio-info">
+                                <h4>Cookies</h4>
+                                <span>Doces</span>
+                            </div>
+                        </div>
+
+                        <div class="envoltorio-contador">
+                            <button class="botao-contador"><i class="fa-solid fa-minus"></i></button>
+                            <div class="mostrador-contagem">4</div>
+                            <button class="botao-contador"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="cartao-stock" data-item="doces">
+                        <button class="botao-fechar"><i class="fa-solid fa-xmark"></i></button>
+                    
+                        <div class="conteudo-cartao">
+                            <div class="envoltorio-imagem">
+                                <img src="images/Doces/donut.png" alt="Donut">
+                            </div>
+                            <div class="envoltorio-info">
+                                <h4>Donut</h4>
+                                <span>Doces</span>
+                            </div>
+                        </div>
+
+                        <div class="envoltorio-contador">
+                            <button class="botao-contador"><i class="fa-solid fa-minus"></i></button>
+                            <div class="mostrador-contagem">1</div>
+                            <button class="botao-contador"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="cartao-stock" data-item="doces">
+                        <button class="botao-fechar"><i class="fa-solid fa-xmark"></i></button>
+                    
+                        <div class="conteudo-cartao">
+                            <div class="envoltorio-imagem">
+                                <img src="images/Doces/donutOreo.png" alt="donutOreo">
+                            </div>
+                            <div class="envoltorio-info">
+                                <h4>Donut de Oreo</h4>
+                                <span>Doces</span>
+                            </div>
+                        </div>
+
+                        <div class="envoltorio-contador">
+                            <button class="botao-contador"><i class="fa-solid fa-minus"></i></button>
+                            <div class="mostrador-contagem">3</div>
+                            <button class="botao-contador"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="cartao-stock" data-item="doces">
+                        <button class="botao-fechar"><i class="fa-solid fa-xmark"></i></button>
+                    
+                        <div class="conteudo-cartao">
+                            <div class="envoltorio-imagem">
+                                <img src="images/Doces/Milfolhas.png" alt="Milfolhas">
+                            </div>
+                            <div class="envoltorio-info">
+                                <h4>Milfolhas</h4>
+                                <span>Doces</span>
+                            </div>
+                        </div>
+
+                        <div class="envoltorio-contador">
+                            <button class="botao-contador"><i class="fa-solid fa-minus"></i></button>
+                            <div class="mostrador-contagem">2</div>
+                            <button class="botao-contador"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="cartao-stock" data-item="doces">
+                        <button class="botao-fechar"><i class="fa-solid fa-xmark"></i></button>
+                    
+                        <div class="conteudo-cartao">
+                            <div class="envoltorio-imagem">
+                                <img src="images/Doces/pampilho.png" alt="Pampilho">
+                            </div>
+                            <div class="envoltorio-info">
+                                <h4>Pampilho</h4>
+                                <span>Doces</span>
+                            </div>
+                        </div>
+
+                        <div class="envoltorio-contador">
+                            <button class="botao-contador"><i class="fa-solid fa-minus"></i></button>
+                            <div class="mostrador-contagem">3</div>
+                            <button class="botao-contador"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="cartao-stock" data-item="doces">
+                        <button class="botao-fechar"><i class="fa-solid fa-xmark"></i></button>
+                    
+                        <div class="conteudo-cartao">
+                            <div class="envoltorio-imagem">
+                                <img src="images/Doces/pastelNata.png" alt="pastelNata">
+                            </div>
+                            <div class="envoltorio-info">
+                                <h4>Pastel de Nata</h4>
+                                <span>Doces</span>
+                            </div>
+                        </div>
+
+                        <div class="envoltorio-contador">
+                            <button class="botao-contador"><i class="fa-solid fa-minus"></i></button>
+                            <div class="mostrador-contagem">5</div>
+                            <button class="botao-contador"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="cartao-stock" data-item="salgados">
+                        <button class="botao-fechar"><i class="fa-solid fa-xmark"></i></button>
+                    
+                        <div class="conteudo-cartao">
+                            <div class="envoltorio-imagem">
+                                <img src="images/Folhado/coxinha.png" alt="Coxinha">
+                            </div>
+                            <div class="envoltorio-info">
+                                <h4>Coxinha</h4>
+                                <span>Salgados</span>
+                            </div>
+                        </div>
+
+                        <div class="envoltorio-contador">
+                            <button class="botao-contador"><i class="fa-solid fa-minus"></i></button>
+                            <div class="mostrador-contagem">1</div>
+                            <button class="botao-contador"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="cartao-stock" data-item="salgados">
+                        <button class="botao-fechar"><i class="fa-solid fa-xmark"></i></button>
+                    
+                        <div class="conteudo-cartao">
+                            <div class="envoltorio-imagem">
+                                <img src="images/Folhado/croquete.png" alt="Croquete">
+                            </div>
+                            <div class="envoltorio-info">
+                                <h4>Croquete</h4>
+                                <span>Salgados</span>
+                            </div>
+                        </div>
+
+                        <div class="envoltorio-contador">
+                            <button class="botao-contador"><i class="fa-solid fa-minus"></i></button>
+                            <div class="mostrador-contagem">2</div>
+                            <button class="botao-contador"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="cartao-stock" data-item="salgados">
+                        <button class="botao-fechar"><i class="fa-solid fa-xmark"></i></button>
+                    
+                        <div class="conteudo-cartao">
+                            <div class="envoltorio-imagem">
+                                <img src="images/Folhado/folhado.png" alt="Merenda Mista">
+                            </div>
+                            <div class="envoltorio-info">
+                                <h4>Merenda Mista</h4>
+                                <span>Salgados</span>
+                            </div>
+                        </div>
+
+                        <div class="envoltorio-contador">
+                            <button class="botao-contador"><i class="fa-solid fa-minus"></i></button>
+                            <div class="mostrador-contagem">3</div>
+                            <button class="botao-contador"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="cartao-stock" data-item="salgados">
+                        <button class="botao-fechar"><i class="fa-solid fa-xmark"></i></button>
+                    
+                        <div class="conteudo-cartao">
+                            <div class="envoltorio-imagem">
+                                <img src="images/Folhado/folhadoSalsicha.png" alt="Folhado de Salsicha">
+                            </div>
+                            <div class="envoltorio-info">
+                                <h4>Folhado de Salsicha</h4>
+                                <span>Salgados</span>
+                            </div>
+                        </div>
+
+                        <div class="envoltorio-contador">
+                            <button class="botao-contador"><i class="fa-solid fa-minus"></i></button>
+                            <div class="mostrador-contagem">2</div>
+                            <button class="botao-contador"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="cartao-stock" data-item="salgados">
+                        <button class="botao-fechar"><i class="fa-solid fa-xmark"></i></button>
+                    
+                        <div class="conteudo-cartao">
+                            <div class="envoltorio-imagem">
+                                <img src="images/Folhado/rissois.png" alt="Rissois">
+                            </div>
+                            <div class="envoltorio-info">
+                                <h4>Rissois</h4>
+                                <span>Salgados</span>
+                            </div>
+                        </div>
+
+                        <div class="envoltorio-contador">
+                            <button class="botao-contador"><i class="fa-solid fa-minus"></i></button>
+                            <div class="mostrador-contagem">3</div>
+                            <button class="botao-contador"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="cartao-stock" data-item="frutas">
+                        <button class="botao-fechar"><i class="fa-solid fa-xmark"></i></button>
+                    
+                        <div class="conteudo-cartao">
+                            <div class="envoltorio-imagem">
+                                <img src="images/Frutas/banana.png" alt="Banana">
+                            </div>
+                            <div class="envoltorio-info">
+                                <h4>Banana</h4>
+                                <span>Fruta</span>
+                            </div>
+                        </div>
+
+                        <div class="envoltorio-contador">
+                            <button class="botao-contador"><i class="fa-solid fa-minus"></i></button>
+                            <div class="mostrador-contagem">2</div>
+                            <button class="botao-contador"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="cartao-stock" data-item="frutas">
+                        <button class="botao-fechar"><i class="fa-solid fa-xmark"></i></button>
+                    
+                        <div class="conteudo-cartao">
+                            <div class="envoltorio-imagem">
+                                <img src="images/Frutas/laranja.png" alt="Laranja">
+                            </div>
+                            <div class="envoltorio-info">
+                                <h4>Laranja</h4>
+                                <span>Fruta</span>
+                            </div>
+                        </div>
+
+                        <div class="envoltorio-contador">
+                            <button class="botao-contador"><i class="fa-solid fa-minus"></i></button>
+                            <div class="mostrador-contagem">3</div>
+                            <button class="botao-contador"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="cartao-stock" data-item="frutas">
+                        <button class="botao-fechar"><i class="fa-solid fa-xmark"></i></button>
+                    
+                        <div class="conteudo-cartao">
+                            <div class="envoltorio-imagem">
+                                <img src="images/Frutas/maça.jpg" alt="Maça">
+                            </div>
+                            <div class="envoltorio-info">
+                                <h4>Maça</h4>
+                                <span>Fruta</span>
+                            </div>
+                        </div>
+
+                        <div class="envoltorio-contador">
+                            <button class="botao-contador"><i class="fa-solid fa-minus"></i></button>
+                            <div class="mostrador-contagem">4</div>
+                            <button class="botao-contador"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="cartao-stock" data-item="frutas">
+                        <button class="botao-fechar"><i class="fa-solid fa-xmark"></i></button>
+                    
+                        <div class="conteudo-cartao">
+                            <div class="envoltorio-imagem">
+                                <img src="images/Frutas/pera.jpg" alt="Pera">
+                            </div>
+                            <div class="envoltorio-info">
+                                <h4>Pera</h4>
+                                <span>Fruta</span>
+                            </div>
+                        </div>
+
+                        <div class="envoltorio-contador">
+                            <button class="botao-contador"><i class="fa-solid fa-minus"></i></button>
+                            <div class="mostrador-contagem">4</div>
+                            <button class="botao-contador"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="cartao-stock" data-item="outros">
+                        <button class="botao-fechar"><i class="fa-solid fa-xmark"></i></button>
+                    
+                        <div class="conteudo-cartao">
+                            <div class="envoltorio-imagem">
+                                <img src="images/Outros/hallsOG.png" alt="Halls Original">
+                            </div>
+                            <div class="envoltorio-info">
+                                <h4>Halls Original</h4>
+                                <span>Outros</span>
+                            </div>
+                        </div>
+
+                        <div class="envoltorio-contador">
+                            <button class="botao-contador"><i class="fa-solid fa-minus"></i></button>
+                            <div class="mostrador-contagem">12</div>
+                            <button class="botao-contador"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="cartao-stock" data-item="outros">
+                        <button class="botao-fechar"><i class="fa-solid fa-xmark"></i></button>
+                    
+                        <div class="conteudo-cartao">
+                            <div class="envoltorio-imagem">
+                                <img src="images/Outros/kinderBueno.png" alt="Kinder Bueno">
+                            </div>
+                            <div class="envoltorio-info">
+                                <h4>Kinder Bueno</h4>
+                                <span>Outros</span>
+                            </div>
+                        </div>
+
+                        <div class="envoltorio-contador">
+                            <button class="botao-contador"><i class="fa-solid fa-minus"></i></button>
+                            <div class="mostrador-contagem">8</div>
+                            <button class="botao-contador"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="cartao-stock" data-item="outros">
+                        <button class="botao-fechar"><i class="fa-solid fa-xmark"></i></button>
+                    
+                        <div class="conteudo-cartao">
+                            <div class="envoltorio-imagem">
+                                <img src="images/Outros/pastilha.png" alt="Trident Menta">
+                            </div>
+                            <div class="envoltorio-info">
+                                <h4>Trident Menta</h4>
+                                <span>Outros</span>
+                            </div>
+                        </div>
+
+                        <div class="envoltorio-contador">
+                            <button class="botao-contador"><i class="fa-solid fa-minus"></i></button>
+                            <div class="mostrador-contagem">11</div>
+                            <button class="botao-contador"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="cartao-stock" data-item="sandes">
+                        <button class="botao-fechar"><i class="fa-solid fa-xmark"></i></button>
+                    
+                        <div class="conteudo-cartao">
+                            <div class="envoltorio-imagem">
+                                <img src="images/Tostas/BagueteDelicia.png" alt="BagueteDelicia">
+                            </div>
+                            <div class="envoltorio-info">
+                                <h4>Baguete de Delicias</h4>
+                                <span>Sandes</span>
+                            </div>
+                        </div>
+
+                        <div class="envoltorio-contador">
+                            <button class="botao-contador"><i class="fa-solid fa-minus"></i></button>
+                            <div class="mostrador-contagem">4</div>
+                            <button class="botao-contador"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="cartao-stock" data-item="sandes">
+                        <button class="botao-fechar"><i class="fa-solid fa-xmark"></i></button>
+                    
+                        <div class="conteudo-cartao">
+                            <div class="envoltorio-imagem">
+                                <img src="images/Tostas/BagueteFrango.png" alt="BagueteFrango">
+                            </div>
+                            <div class="envoltorio-info">
+                                <h4>Baguete de Frango</h4>
+                                <span>Sandes</span>
+                            </div>
+                        </div>
+
+                        <div class="envoltorio-contador">
+                            <button class="botao-contador"><i class="fa-solid fa-minus"></i></button>
+                            <div class="mostrador-contagem">1</div>
+                            <button class="botao-contador"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="cartao-stock" data-item="sandes">
+                        <button class="botao-fechar"><i class="fa-solid fa-xmark"></i></button>
+                    
+                        <div class="conteudo-cartao">
+                            <div class="envoltorio-imagem">
+                                <img src="images/Tostas/BagueteMista.png" alt="BagueteMista">
+                            </div>
+                            <div class="envoltorio-info">
+                                <h4>Baguete Mista</h4>
+                                <span>Sandes</span>
+                            </div>
+                        </div>
+
+                        <div class="envoltorio-contador">
+                            <button class="botao-contador"><i class="fa-solid fa-minus"></i></button>
+                            <div class="mostrador-contagem">4</div>
+                            <button class="botao-contador"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="cartao-stock" data-item="sandes">
+                        <button class="botao-fechar"><i class="fa-solid fa-xmark"></i></button>
+                    
+                        <div class="conteudo-cartao">
+                            <div class="envoltorio-imagem">
+                                <img src="images/Tostas/BaguetePresunto.png" alt="BaguetePresunto">
+                            </div>
+                            <div class="envoltorio-info">
+                                <h4>Baguete de Presunto</h4>
+                                <span>Sandes</span>
+                            </div>
+                        </div>
+
+                        <div class="envoltorio-contador">
+                            <button class="botao-contador"><i class="fa-solid fa-minus"></i></button>
+                            <div class="mostrador-contagem">4</div>
+                            <button class="botao-contador"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="cartao-stock" data-item="sandes">
+                        <button class="botao-fechar"><i class="fa-solid fa-xmark"></i></button>
+                    
+                        <div class="conteudo-cartao">
+                            <div class="envoltorio-imagem">
+                                <img src="images/Tostas/TostaAtum.png" alt="TostaAtum">
+                            </div>
+                            <div class="envoltorio-info">
+                                <h4>Tosta de Atum</h4>
+                                <span>Sandes</span>
+                            </div>
+                        </div>
+
+                        <div class="envoltorio-contador">
+                            <button class="botao-contador"><i class="fa-solid fa-minus"></i></button>
+                            <div class="mostrador-contagem">5</div>
+                            <button class="botao-contador"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="cartao-stock" data-item="sandes">
+                        <button class="botao-fechar"><i class="fa-solid fa-xmark"></i></button>
+                    
+                        <div class="conteudo-cartao">
+                            <div class="envoltorio-imagem">
+                                <img src="images/Tostas/TostaDelicias.png" alt="TostaDelicias">
+                            </div>
+                            <div class="envoltorio-info">
+                                <h4>Tosta de Delicias</h4>
+                                <span>Sandes</span>
+                            </div>
+                        </div>
+
+                        <div class="envoltorio-contador">
+                            <button class="botao-contador"><i class="fa-solid fa-minus"></i></button>
+                            <div class="mostrador-contagem">5</div>
+                            <button class="botao-contador"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="cartao-stock" data-item="sandes">
+                        <button class="botao-fechar"><i class="fa-solid fa-xmark"></i></button>
+                    
+                        <div class="conteudo-cartao">
+                            <div class="envoltorio-imagem">
+                                <img src="images/Tostas/TostaFrango.jpg" alt="TostaFrango">
+                            </div>
+                            <div class="envoltorio-info">
+                                <h4>Tosta de Frango</h4>
+                                <span>Sandes</span>
+                            </div>
+                        </div>
+
+                        <div class="envoltorio-contador">
+                            <button class="botao-contador"><i class="fa-solid fa-minus"></i></button>
+                            <div class="mostrador-contagem">5</div>
+                            <button class="botao-contador"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="cartao-stock" data-item="sandes">
+                        <button class="botao-fechar"><i class="fa-solid fa-xmark"></i></button>
+                    
+                        <div class="conteudo-cartao">
+                            <div class="envoltorio-imagem">
+                                <img src="images/Tostas/TostaMista.png" alt="TostaMista">
+                            </div>
+                            <div class="envoltorio-info">
+                                <h4>Tosta Mista</h4>
+                                <span>Sandes</span>
+                            </div>
+                        </div>
+
+                        <div class="envoltorio-contador">
+                            <button class="botao-contador"><i class="fa-solid fa-minus"></i></button>
+                            <div class="mostrador-contagem">5</div>
+                            <button class="botao-contador"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
