@@ -295,7 +295,7 @@ body {
 
 .distintivo-preparado {
     background-color: #f7cdb2;
-    color: white;
+    color: #e85d04;
     font-weight: bold;
     padding: 6px 12px;
     border-radius: 20px;
@@ -307,7 +307,7 @@ body {
 
 .distintivo-preparacao {
     background-color: darkgray;
-    color: white;
+    color: #333;
     font-weight: bold;
     padding: 6px 12px;
     border-radius: 20px;
