@@ -119,7 +119,7 @@ $conn->close();
                 <button type="submit" class="botao-entrar">Criar</button>
 
                 <div class="link-rodape">
-                    Já tens conta criada? <a href="login.html">Faz login</a>
+                    Já tens conta criada? <a href="login.php">Faz login</a>
                 </div>
             </form>
         </div>
