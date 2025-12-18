@@ -46,9 +46,9 @@ $cargo = ($isAdmin == 1) ? "Administrador" : "Aluno";
                     
                     <?php if ($isAdmin == 1): ?>
                         <li><a href="artigosAdmin.php">Artigos</a></li>
-                        <li><a href="stockAdmin.html">Stock</a></li>
-                        <li><a href="historicoAdmin.html">Histórico</a></li>
-                        <li><a href="pedidosAdmin.html">Pedidos</a></li>
+                        <li><a href="stockAdmin.php">Stock</a></li>
+                        <li><a href="historicoAdmin.php">Histórico</a></li>
+                        <li><a href="pedidosAdmin.php">Pedidos</a></li>
                     <?php else: ?>
                         <li><a href="artigosAluno.html">Encomendar</a></li>
                         <li><a href="historicoAluno.html">Histórico</a></li>
