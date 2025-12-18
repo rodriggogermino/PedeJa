@@ -172,6 +172,7 @@ body {
     display: flex;
     gap: 25px;
     margin-bottom: 40px;
+    flex: 1;
 }
 
 .cartao {
@@ -226,14 +227,13 @@ body {
     font-size: 26px;
     line-height: 1.2;
     color: #333;
+    flex: 0.5;
 }
 
 .texto-leve { font-weight: 300; color: #888; }
 .texto-negrito { font-weight: 800; color: #333; }
 
 .seccao-destaque .cartao {
-    flex: 0 0 320px;
-    height: 130px;
     margin: 0;
 }
 
