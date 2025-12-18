@@ -1,5 +1,5 @@
 # PedeJa
-PedeJá - Com o PedeJá fazes o teu pedido no bar da escola em segundos. Escolhe, agenda e levanta sem filas!
+<b>PedeJá</b> - Com o PedeJá fazes o teu pedido no bar da escola em segundos. Escolhe, agenda e levanta sem filas!
 
 ### 📘 Objetivos  
 
@@ -8,11 +8,11 @@ O objetivo da aplicação é simplificar e agilizar o processo de requisição d
 Para os funcionários do bar, a aplicação oferece um painel de gestão, onde podem consultar e atualizar o estado dos pedidos, bem como adicionar ou editar os produtos disponíveis. Assim, promove-se uma melhor organização do serviço e uma comunicação mais eficaz entre clientes e bar. 
 
 ### 🗂️ Tecnologias e ferramentas
-- HTML 5
-- CSS 3
-- JavaScript
-- PHP
-- MySQL
+- HTML 5;
+- CSS 3;
+- JavaScript;
+- PHP;
+- MySQL.
 
 #
 ### 🎯 Público alvo
