@@ -1,33 +1,26 @@
 <?php
 require "config.php";
 
-// Se o form for enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
     $nome = $_POST["nome"];
     $descricao = $_POST["descricao"];
     $categoria_id = $_POST["categoria"];
     $preco = $_POST["preco"];
 
-    // Validar campos no servidor (backup)
     if (!empty($nome) && !empty($descricao) && !empty($categoria_id) && !empty($preco) && isset($_FILES['imagem'])) {
 
-        // Buscar nome da categoria
         $res = $conn->query("SELECT nome FROM categorias WHERE id_categoria = $categoria_id");
         $row = $res->fetch_assoc();
         $categoria_nome = strtolower($row['nome']);
 
-        // Pasta destino
         $pasta = "images/" . $categoria_nome . "/";
         if (!file_exists($pasta)) mkdir($pasta, 0777, true);
 
-        // Upload da imagem
         $imagem = $_FILES["imagem"]["name"];
         $tmp = $_FILES["imagem"]["tmp_name"];
         $destino = $pasta . $imagem;
         move_uploaded_file($tmp, $destino);
 
-        // Inserir na BD
         $sql = "INSERT INTO artigos (nome, desc_artigo, categoria_id, preco, imagem)
                 VALUES ('$nome', '$descricao', $categoria_id, '$preco', '$destino')";
         $conn->query($sql);
@@ -42,19 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Adicionar Artigo - PedeJá</title>
     <link rel="stylesheet" href="css/artigos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Preview da imagem */
-        .zona-upload-imagem img {
-            max-width: 100%;
-            max-height: 150px;
-            display: block;
-            margin: 0 auto;
-        }
-        .erro {
-            color: red;
-            margin-bottom: 10px;
-        }
-    </style>
+
 </head>
 <body>
 
@@ -62,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <aside class="barra-lateral">
         <div class="marca">
-            <h1><a href="dashboardAdmin.html">PedeJá</a></h1>
+            <h1><a href="index.php">PedeJá</a></h1>
         </div>
 
         <div class="perfil-utilizador">
@@ -78,16 +59,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <nav class="menu-navegacao">
             <div class="etiqueta-menu">Menu</div>
             <ul>
-                <li><a href="dashboardAdmin.html">Início</a></li>
-                <li><a href="artigosAdmin.html">Artigos</a></li>
+                <li><a href="index.php">Início</a></li>
+                <li><a href="artigosAdmin.php">Artigos</a></li>
                 <li><a href="#" class="ativo">Stock</a></li>
-                <li><a href="historicoAdmin.html">Histórico</a></li>
-                <li><a href="pedidosAdmin.html">Pedidos</a></li>
+                <li><a href="historicoAdmin.php">Histórico</a></li>
+                <li><a href="pedidosAdmin.php">Pedidos</a></li>
             </ul>
         </nav>
 
         <div class="area-sair">
-            <a href="login.html">Sair <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+            <a href="login.php">Sair <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
         </div>
     </aside>
 
@@ -151,7 +132,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                         <div class="linha-botoes">
                             <button class="botao botao-adicionar-form" type="submit">Adicionar</button>
-                            <button class="botao botao-cancelar" type="button" onclick="window.location.href='stockAdmin.html'">Cancelar</button>
+                            <button class="botao botao-cancelar" type="button" onclick="window.location.href='stockAdmin.php'">Cancelar</button>
                         </div>
 
                     </div>
@@ -168,7 +149,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     const form = document.getElementById('form-artigo');
     const erro = document.getElementById('erro');
 
-    // Mostrar preview da imagem
     fileInput.addEventListener('change', function() {
         const file = this.files[0];
         if(file){
@@ -181,9 +161,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     });
 
-    // Validação simples antes de submeter
     form.addEventListener('submit', function(e){
-        erro.innerText = ''; // limpar mensagens
+        erro.innerText = '';
         const nome = form.nome.value.trim();
         const descricao = form.descricao.value.trim();
         const categoria = form.categoria.value;

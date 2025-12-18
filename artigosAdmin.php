@@ -30,7 +30,7 @@ $result = $conn->query($sql);
 
     <aside class="barra-lateral">
         <div class="marca">
-            <h1><a href="dashboardAdmin.html">PedeJá</a></h1>
+            <h1><a href="index.php">PedeJá</a></h1>
         </div>
 
         <div class="perfil-utilizador">
@@ -46,16 +46,16 @@ $result = $conn->query($sql);
         <nav class="menu-navegacao">
             <div class="etiqueta-menu">Menu</div>
             <ul>
-                <li><a href="dashboardAdmin.html">Início</a></li>
+                <li><a href="index.php">Início</a></li>
                 <li><a href="#" class="ativo">Artigos</a></li>
-                <li><a href="stockAdmin.html">Stock</a></li>
-                <li><a href="historicoAdmin.html">Histórico</a></li>
-                <li><a href="pedidosAdmin.html">Pedidos</a></li>
+                <li><a href="stockAdmin.php">Stock</a></li>
+                <li><a href="historicoAdmin.php">Histórico</a></li>
+                <li><a href="pedidosAdmin.php">Pedidos</a></li>
             </ul>
         </nav>
 
         <div class="area-sair">
-            <a href="login.html">Sair <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+            <a href="login.php">Sair <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
         </div>
     </aside>
 
