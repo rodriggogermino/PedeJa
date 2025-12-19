@@ -69,7 +69,7 @@ function getClasseEstado($estado) {
                         <li><a href="artigos.php">Encomendar</a></li>
                         <li><a href="historicoAluno.html">Histórico</a></li>
                         <li>
-                            <a href="carrinhoAluno.html">
+                            <a href="carrinhoAluno.php">
                                 Carrinho 
                                 <span id="badge-carrinho" style="background:red; color:white; padding:2px 6px; border-radius:10px; font-size:12px; display: <?php echo $display_badge; ?>;">
                                     <?php echo $total_carrinho; ?>
