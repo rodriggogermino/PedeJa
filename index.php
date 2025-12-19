@@ -76,11 +76,11 @@ $cargo = ($isAdmin == 1) ? "Administrador" : "Aluno";
             <div class="seccao-destaque">
                 <?php if ($isAdmin == 1): ?>
                     <div class="cartoes-acao" style="display: flex; gap: 20px;">
-                        <div class="cartao cartao-laranja" onclick="location.href='stockAdmin.html'">
+                        <div class="cartao cartao-laranja" onclick="location.href='stockAdmin.php'">
                             <div class="icone-topo"><i class="fa-solid fa-arrow-right"></i></div>
                             <div class="texto-cartao">Editar Stock</div>
                         </div>
-                        <div class="cartao cartao-amarelo" onclick="location.href='artigosAdmin.html'">
+                        <div class="cartao cartao-amarelo" onclick="location.href='artigosAdmin.php'">
                             <div class="icone-topo"><i class="fa-solid fa-arrow-right"></i></div>
                             <div class="texto-cartao">Ver Artigos</div>
                         </div>
