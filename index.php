@@ -102,7 +102,11 @@ function getClasseEstado($estado) {
                             <div class="icone-topo"><i class="fa-solid fa-arrow-right"></i></div>
                             <div class="texto-cartao">Editar Stock</div>
                         </div>
+<<<<<<< HEAD
                         <div class="cartao cartao-amarelo" onclick="location.href='artigos.php'">
+=======
+                        <div class="cartao cartao-amarelo" onclick="location.href='artigosAdmin.php'">
+>>>>>>> 1f5cbf2635b881adf17a0c776065ee15fcbb6b39
                             <div class="icone-topo"><i class="fa-solid fa-arrow-right"></i></div>
                             <div class="texto-cartao">Ver Artigos</div>
                         </div>
