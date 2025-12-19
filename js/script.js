@@ -30,3 +30,58 @@ function mudarEstado() {
         }
     }
 }
+
+function toggleFavorito(botao, id) {
+    fetch('artigos.php', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ acao: 'toggle_favorito', id: id })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.status === 'added') {
+            botao.classList.remove('favorito-inativo');
+            botao.classList.add('favorito-ativo');
+        } else {
+            botao.classList.remove('favorito-ativo');
+            botao.classList.add('favorito-inativo');
+        }
+    })
+    .catch(err => console.error(err));
+}
+
+function adicionarCarrinho(id) {
+    fetch('artigos.php', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ acao: 'adicionar_carrinho', id: id })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.status === 'success') {
+            alert("Artigo adicionado ao carrinho!");
+            let badge = document.getElementById('badge-carrinho');
+            if(badge) {
+                badge.innerText = data.total;
+                badge.style.display = 'inline-block';
+            }
+        }
+    })
+    .catch(err => console.error(err));
+}
+
+function filtrarCategoria(cat, elemento) {
+    document.querySelectorAll('.lista-cat li').forEach(li => li.classList.remove('ativo'));
+    elemento.classList.add('ativo');
+    document.querySelectorAll('.cartao-produto').forEach(item => {
+        item.style.display = (cat === 'todos' || item.getAttribute('data-item') === cat) ? 'flex' : 'none';
+    });
+}
+
+function filtrarPesquisa() {
+    let input = document.getElementById('barraPesquisa').value.toLowerCase();
+    document.querySelectorAll('.cartao-produto').forEach(item => {
+        let nome = item.querySelector('.titulo-produto').innerText.toLowerCase();
+        item.style.display = nome.includes(input) ? 'flex' : 'none';
+    });
+}

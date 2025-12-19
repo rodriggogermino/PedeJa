@@ -9,17 +9,17 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 }
 
 $user_id = $_SESSION['id_utilizador'];
-$isAdmin = isset($_SESSION['isAdmin']) ? $_SESSION['isAdmin'] : 0; // 1 = Admin, 0 = Aluno
+$isAdmin = isset($_SESSION['isAdmin']) ? $_SESSION['isAdmin'] : 0; 
 $cargo = ($isAdmin == 1) ? "Administrador" : "Aluno";
-$menu_ativo = ($isAdmin == 1) ? "Artigos" : "Encomendar"; // Para destacar no menu
+$menu_ativo = ($isAdmin == 1) ? "Artigos" : "Encomendar"; 
 
-// --- LÓGICA DE ACTIONS (Só para Alunos) ---
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $isAdmin == 0) {
     header('Content-Type: application/json');
     $input = json_decode(file_get_contents("php://input"), true);
 
     if (isset($input['acao'])) {
-        // Toggle Favorito
+        
         if ($input['acao'] === 'toggle_favorito') {
             $artigo_id = $input['id'];
             
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $isAdmin == 0) {
             }
             exit;
         } 
-        // Adicionar ao Carrinho
+       
         elseif ($input['acao'] === 'adicionar_carrinho') {
             $artigo_id = $input['id'];
             if (!isset($_SESSION['carrinho'])) { $_SESSION['carrinho'] = []; }
@@ -57,8 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $isAdmin == 0) {
     }
 }
 
-// --- CARREGAR ARTIGOS ---
-// Se for aluno, verifica também se é favorito
+
 if ($isAdmin == 0) {
     $sql = "SELECT a.*, c.nome AS nome_categoria, 
             (SELECT COUNT(*) FROM favoritos f WHERE f.artigo_id = a.id_artigos AND f.utilizador_id = $user_id) as is_favorito
@@ -67,7 +66,7 @@ if ($isAdmin == 0) {
             WHERE a.stock > 0
             ORDER BY a.nome ASC";
 } else {
-    // Admin vê tudo, mesmo sem stock (opcional, aqui mantive stock > 0 para consistência visual ou podes tirar o WHERE)
+    
     $sql = "SELECT a.*, c.nome AS nome_categoria 
             FROM artigos a 
             JOIN categorias c ON a.categoria_id = c.id_categoria
@@ -207,64 +206,7 @@ $result = $conn->query($sql);
             </div>
         </main>
     </div>
-
+    <script src="js/script.js"></script>
     <script src="js/catProduto.js"></script>
-    <script>
-        // Funções apenas necessárias se for Aluno, mas mal não fazem estar aqui
-        function toggleFavorito(botao, id) {
-            fetch('artigos.php', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({ acao: 'toggle_favorito', id: id })
-            })
-            .then(res => res.json())
-            .then(data => {
-                if(data.status === 'added') {
-                    botao.classList.remove('favorito-inativo');
-                    botao.classList.add('favorito-ativo');
-                } else {
-                    botao.classList.remove('favorito-ativo');
-                    botao.classList.add('favorito-inativo');
-                }
-            })
-            .catch(err => console.error(err));
-        }
-
-        function adicionarCarrinho(id) {
-            fetch('artigos.php', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({ acao: 'adicionar_carrinho', id: id })
-            })
-            .then(res => res.json())
-            .then(data => {
-                if(data.status === 'success') {
-                    alert("Artigo adicionado ao carrinho!");
-                    let badge = document.getElementById('badge-carrinho');
-                    if(badge) {
-                        badge.innerText = data.total;
-                        badge.style.display = 'inline-block';
-                    }
-                }
-            })
-            .catch(err => console.error(err));
-        }
-
-        function filtrarCategoria(cat, elemento) {
-            document.querySelectorAll('.lista-cat li').forEach(li => li.classList.remove('ativo'));
-            elemento.classList.add('ativo');
-            document.querySelectorAll('.cartao-produto').forEach(item => {
-                item.style.display = (cat === 'todos' || item.getAttribute('data-item') === cat) ? 'flex' : 'none';
-            });
-        }
-
-        function filtrarPesquisa() {
-            let input = document.getElementById('barraPesquisa').value.toLowerCase();
-            document.querySelectorAll('.cartao-produto').forEach(item => {
-                let nome = item.querySelector('.titulo-produto').innerText.toLowerCase();
-                item.style.display = nome.includes(input) ? 'flex' : 'none';
-            });
-        }
-    </script>
 </body>
 </html>
