@@ -1,23 +1,19 @@
 <?php
-// 1. Incluir a configuração da base de dados
 require_once 'config.php';
 
 $mensagem = "";
-$tipo_mensagem = ""; // "sucesso" ou "erro"
+$tipo_mensagem = ""; 
 
-// 2. Verificar se o formulário foi submetido
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Recolher e limpar os dados
     $nome = trim($_POST['nome']);
     $email = trim($_POST['email']);
     $password = $_POST['password'];
 
-    // Validação básica
     if (empty($nome) || empty($email) || empty($password)) {
         $mensagem = "Por favor, preencha todos os campos.";
         $tipo_mensagem = "erro";
     } else {
-        // 3. Verificar se o email já existe
         $stmt_check = $conn->prepare("SELECT id_utilizador FROM utilizadores WHERE email = ?");
         $stmt_check->bind_param("s", $email);
         $stmt_check->execute();
@@ -27,19 +23,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mensagem = "Este email já se encontra registado.";
             $tipo_mensagem = "erro";
         } else {
-            // 4. Encriptar a password (NUNCA guardar em texto limpo)
             $password_hash = password_hash($password, PASSWORD_DEFAULT);
-
-            // 5. Inserir na base de dados
-            // Nota: isAdmin assume 0 por defeito na BD, não precisamos de enviar
             $stmt_insert = $conn->prepare("INSERT INTO utilizadores (nome, email, password) VALUES (?, ?, ?)");
             $stmt_insert->bind_param("sss", $nome, $email, $password_hash);
 
             if ($stmt_insert->execute()) {
                 $mensagem = "Conta criada com sucesso! Podes fazer login.";
                 $tipo_mensagem = "sucesso";
-                // Opcional: Redirecionar para o login após x segundos
-                // header("refresh:3;url=login.html"); 
             } else {
                 $mensagem = "Ocorreu um erro ao criar a conta: " . $conn->error;
                 $tipo_mensagem = "erro";
@@ -60,7 +50,6 @@ $conn->close();
     <title>Registar - PedeJá</title>
     <link rel="stylesheet" href="css/login.css">
     <style>
-        /* Pequeno estilo extra para as mensagens de erro/sucesso */
         .mensagem {
             padding: 10px;
             margin-bottom: 15px;

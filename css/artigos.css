@@ -922,3 +922,14 @@ body {
 .linha-fundo {
     display: none;
 }
+
+     .zona-upload-imagem img {
+            max-width: 100%;
+            max-height: 150px;
+            display: block;
+            margin: 0 auto;
+        }
+        .erro {
+            color: red;
+            margin-bottom: 10px;
+        }
