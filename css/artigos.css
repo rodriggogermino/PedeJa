@@ -841,7 +841,6 @@ body {
     margin-bottom: 20px;
 }
 
-/* Cabeçalho "Meu pedido:" */
 .cabecalho-carrinho h3 {
     font-size: 24px;
     font-weight: 400;
@@ -857,7 +856,6 @@ body {
     width: 50%;
 }
 
-/* Estado Vazio */
 .estado-vazio {
     flex: 1;
     display: flex;
@@ -868,7 +866,6 @@ body {
     font-weight: 400;
 }
 
-/* Widget Total (Canto Inferior Direito) */
 .widget-total {
     align-self: flex-end;
     width: 300px;
@@ -900,7 +897,6 @@ body {
     font-weight: 600;
 }
 
-/* Botão Preto "Pedir" */
 .botao-pedir {
     width: 100%;
     background-color: #1a1a1a;
@@ -917,11 +913,9 @@ body {
 .botao-pedir:hover {
     background-color: #333;
 }
-
-/* Linha decorativa no fundo, se necessária (estava no código anterior) */
 .linha-fundo {
     display: none;
-}
+}                                                                           
 
      .zona-upload-imagem img {
             max-width: 100%;
@@ -933,3 +927,158 @@ body {
             color: red;
             margin-bottom: 10px;
         }
+
+/* CSS ESPECÍFICO PARA O CARRINHO (Baseado na imagem enviada) */
+
+        .contentor-carrinho {
+            /* Garante que o contentor ocupa a altura necessária */
+            display: flex;
+            flex-direction: column;
+            min-height: 500px; 
+            padding-bottom: 20px;
+        }
+
+        /* Layout quando há produtos (2 Colunas) */
+        .layout-carrinho-cheio {
+            display: flex;
+            gap: 40px;
+            margin-top: 20px;
+            align-items: flex-start;
+        }
+
+        .coluna-itens {
+            flex: 2; /* 66% largura */
+        }
+
+        .coluna-resumo {
+            flex: 1; /* 33% largura */
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            /* Se quiseres sombra no resumo como na imagem, descomenta: */
+            /* box-shadow: 0 5px 20px rgba(0,0,0,0.05); */
+        }
+
+        /* Cartão do Produto (Estilo Cinzento da Imagem) */
+        .cartao-item {
+            background-color: #f5f5f5; /* Cinzento claro */
+            border-radius: 12px;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        /* Bolinha Laranja de Seleção */
+        .radio-select {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #e85d04;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+        }
+        .radio-select::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background-color: #e85d04;
+            border-radius: 50%;
+        }
+
+        .img-item {
+            width: 80px;
+            height: 60px;
+            object-fit: contain;
+            margin-right: 20px;
+            mix-blend-mode: multiply; /* Tenta remover fundo branco da imagem */
+        }
+
+        .info-item {
+            flex: 1;
+        }
+        .info-item h4 {
+            margin: 0;
+            font-size: 16px;
+            color: #333;
+            font-weight: 700;
+        }
+        .info-item span {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .preco-item {
+            font-weight: 700;
+            color: #333;
+            margin-right: 30px;
+            font-size: 15px;
+        }
+
+        /* Seletor de Quantidade Laranja */
+        .seletor-qtd {
+            background-color: #e85d04;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            padding: 2px 5px;
+            color: white;
+            font-weight: bold;
+        }
+        .btn-qtd {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            padding: 0 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Botão Lixo (Caixa Branca) */
+        .caixa-lixo {
+            background-color: white;
+            width: 50px;
+            height: 100%;
+            position: absolute;
+            right: 0;
+            top: 0;
+            border-top-right-radius: 12px;
+            border-bottom-right-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-left: 1px solid #eee;
+        }
+        .btn-trash {
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: #333;
+            cursor: pointer;
+        }
+        .btn-trash:hover {
+            color: #ff4d4d;
+        }
+
+        /* Estilos do Resumo (Igual à imagem e ao carrinho vazio) */
+        .lista-resumo {
+            margin-bottom: 20px;
+        }
+        .linha-resumo {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 8px;
+        }
+        .qtd-mini { font-size: 12px; color: #999; }
+
+        /* Alertas */
+        .alert { padding: 15px; margin-bottom: 20px; border-radius: 8px; text-align: center; }
+        .alert-sucesso { background-color: #d4edda; color: #155724; }
+        .alert-erro { background-color: #f8d7da; color: #721c24; }

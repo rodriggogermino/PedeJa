@@ -122,7 +122,7 @@ $result = $conn->query($sql);
                     <?php else: ?>
                         <li><a href="artigos.php" class="ativo">Encomendar</a></li>
                         <li><a href="historicoAluno.html">Histórico</a></li>
-                        <li><a href="carrinhoAluno.html">Carrinho <span id="badge-carrinho" style="background:red; color:white; padding:2px 6px; border-radius:10px; font-size:12px; display:none;">0</span></a></li>
+                        <li><a href="carrinhoAluno.php">Carrinho <span id="badge-carrinho" style="background:red; color:white; padding:2px 6px; border-radius:10px; font-size:12px; display:none;">0</span></a></li>
                     <?php endif; ?>
                 </ul>
             </nav>
@@ -162,8 +162,7 @@ $result = $conn->query($sql);
                     <?php if ($result && $result->num_rows > 0): ?>
                         <?php while($row = $result->fetch_assoc()): ?>
                             <?php 
-                                $catSlug = strtolower($row['nome_categoria']); 
-                                // Se for aluno, verifica favorito. Se for admin, assume 0.
+                                $catSlug = strtolower($row['nome_categoria']);
                                 $isFav = isset($row['is_favorito']) ? $row['is_favorito'] : 0;
                                 $favClass = ($isFav > 0) ? 'favorito-ativo' : 'favorito-inativo';
                             ?>
