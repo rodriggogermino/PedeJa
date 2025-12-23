@@ -149,9 +149,9 @@ if (!empty($_SESSION['carrinho'])) {
         <main class="conteudo-principal">
             
             <header class="cabecalho-topo">
-                <div class="saudacao">
-                    <h2>Olá, <br><strong><?php echo htmlspecialchars($nome_utilizador); ?>!</strong></h2>
-                </div>
+                <header class="cabecalho-pagina">
+                <h2>Olá, <br><strong><?php echo htmlspecialchars($nome_utilizador); ?>!</strong></h2>
+            </header>
             </header>
 
             <div class="contentor-carrinho">
