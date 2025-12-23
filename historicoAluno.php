@@ -2,18 +2,13 @@
 session_start();
 require_once 'config.php';
 
-// Verifica se o utilizador está logado
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     header("Location: login.php");
     exit;
 }
-
-// Obtém os dados do utilizador da sessão
 $id_utilizador = $_SESSION['id_utilizador'];
 $nome_utilizador = $_SESSION['nome'];
 
-// Query para buscar apenas os pedidos ENTREGUES do aluno logado
-// Agrupamos os artigos para mostrar um resumo numa única linha
 $sql = "SELECT p.id_pedido, p.data, p.hora_Agendada, p.estado,
                GROUP_CONCAT(CONCAT(pa.quantidade, 'x ', a.nome) SEPARATOR ', ') AS resumo_pedido,
                SUM(pa.quantidade * pa.preco_unitario_historico) AS total_pago

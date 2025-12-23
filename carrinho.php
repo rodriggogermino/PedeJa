@@ -8,6 +8,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 }
 
 $user_id = $_SESSION['id_utilizador'];
+$nome_utilizador = $_SESSION['nome'];
 $isAdmin = $_SESSION['isAdmin'];
 $cargo = ($isAdmin == 1) ? "Administrador" : "Aluno";
 
@@ -16,12 +17,14 @@ $tipo_msg = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
+    // Remover item
     if (isset($_POST['acao']) && $_POST['acao'] === 'remover') {
         $id_remover = intval($_POST['id_artigo']);
         if (isset($_SESSION['carrinho'][$id_remover])) {
             unset($_SESSION['carrinho'][$id_remover]);
         }
     }
+
     if (isset($_POST['acao']) && $_POST['acao'] === 'atualizar_qtd') {
         $id_artigo = intval($_POST['id_artigo']);
         $nova_qtd = intval($_POST['qtd']);
@@ -32,10 +35,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             unset($_SESSION['carrinho'][$id_artigo]);
         }
     }
+
     if (isset($_POST['acao']) && $_POST['acao'] === 'finalizar') {
         if (!empty($_SESSION['carrinho'])) {
-            $metodo_pagamento = "Numerário";
-            $hora_entrega = date('H:i', strtotime('+15 minutes'));
+            $metodo_pagamento = $_POST['pagamento'];
+            $hora_entrega = $_POST['hora'];
             
             $conn->begin_transaction();
             try {
@@ -56,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $stmt_item->bind_param("iiid", $pedido_id, $id_artigo, $qtd, $dados_artigo['preco']);
                     $stmt_item->execute();
                     $stmt_item->close();
-                    
+
                     $conn->query("UPDATE artigos SET stock = stock - $qtd WHERE id_artigos = $id_artigo");
                 }
                 $conn->commit();
@@ -71,6 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+
 $produtos_carrinho = [];
 $total_pedido = 0;
 
@@ -114,7 +119,7 @@ if (!empty($_SESSION['carrinho'])) {
                     <i class="fa-solid fa-user"></i>
                 </div>
                 <div class="info-utilizador">
-                    <strong><?php echo htmlspecialchars($_SESSION['nome']); ?></strong>
+                    <strong><?php echo htmlspecialchars($nome_utilizador); ?></strong>
                     <span><?php echo $cargo; ?></span>
                 </div>
             </div>
@@ -130,7 +135,7 @@ if (!empty($_SESSION['carrinho'])) {
                         <li><a href="pedidosAdmin.php">Pedidos</a></li>
                     <?php else: ?>
                         <li><a href="artigos.php">Encomendar</a></li>
-                        <li><a href="historicoAluno.php">Histórico</a></li>
+                        <li><a href="historicoAluno.html">Histórico</a></li>
                         <li><a href="carrinho.php" class="ativo">Carrinho</a></li>
                     <?php endif; ?>
                 </ul>
@@ -145,7 +150,7 @@ if (!empty($_SESSION['carrinho'])) {
             
             <header class="cabecalho-topo">
                 <div class="saudacao">
-                    <h2>Olá,<br><strong><?php echo htmlspecialchars($_SESSION['nome']); ?>!</strong></h2>
+                    <h2>Olá, <br><strong><?php echo htmlspecialchars($nome_utilizador); ?>!</strong></h2>
                 </div>
             </header>
 
@@ -153,7 +158,7 @@ if (!empty($_SESSION['carrinho'])) {
                 
                 <div class="cabecalho-carrinho">
                     <h3>Meu pedido:</h3>
-                    <hr class="divisor">
+                    <hr class="divisor" style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
                 </div>
 
                 <?php if ($mensagem != ""): ?>
@@ -177,7 +182,6 @@ if (!empty($_SESSION['carrinho'])) {
                             </div>
                             <button class="botao-pedir" onclick="location.href='artigos.php'">Ir para Artigos</button>
                         </div>
-                        <hr class="linha-fundo"> 
                     </div>
 
                 <?php else: ?>
@@ -188,36 +192,29 @@ if (!empty($_SESSION['carrinho'])) {
                             <?php foreach ($produtos_carrinho as $item): ?>
                                 <div class="cartao-item">
                                     <div class="radio-select"></div>
-                                    
                                     <img src="<?php echo !empty($item['imagem']) ? $item['imagem'] : 'images/default.png'; ?>" class="img-item">
-                                    
                                     <div class="info-item">
                                         <h4><?php echo htmlspecialchars($item['nome']); ?></h4>
                                         <span><?php echo !empty($item['desc_artigo']) ? substr($item['desc_artigo'], 0, 30) . '...' : 'Delicioso e fresco'; ?></span>
                                     </div>
-
                                     <div class="preco-item">
                                         <?php echo number_format($item['preco'], 2); ?> €
                                     </div>
-
                                     <div class="seletor-qtd">
-                                        <form method="POST" style="margin:0; display:inline;">
+                                        <form method="POST" style="margin:0; display:flex;">
                                             <input type="hidden" name="acao" value="atualizar_qtd">
                                             <input type="hidden" name="id_artigo" value="<?php echo $item['id_artigos']; ?>">
                                             <input type="hidden" name="qtd" value="<?php echo $item['qtd_carrinho'] - 1; ?>">
                                             <button type="submit" class="btn-qtd">-</button>
                                         </form>
-
                                         <span><?php echo $item['qtd_carrinho']; ?></span>
-
-                                        <form method="POST" style="margin:0; display:inline;">
+                                        <form method="POST" style="margin:0; display:flex;">
                                             <input type="hidden" name="acao" value="atualizar_qtd">
                                             <input type="hidden" name="id_artigo" value="<?php echo $item['id_artigos']; ?>">
                                             <input type="hidden" name="qtd" value="<?php echo $item['qtd_carrinho'] + 1; ?>">
                                             <button type="submit" class="btn-qtd">+</button>
                                         </form>
                                     </div>
-
                                     <div class="caixa-lixo">
                                         <form method="POST" style="margin:0; display:flex;">
                                             <input type="hidden" name="acao" value="remover">
@@ -239,17 +236,14 @@ if (!empty($_SESSION['carrinho'])) {
                                 <?php endforeach; ?>
                              </div>
 
-                             <hr class="mini-divisor">
-                             
-                             <div class="linha-total">
-                                <span>Total</span>
-                                <span><?php echo number_format($total_pedido, 2); ?> €</span>
+                             <div class="rodape-resumo">
+                                 <hr class="mini-divisor">
+                                 <div class="linha-total">
+                                    <span>Total</span>
+                                    <span><?php echo number_format($total_pedido, 2); ?> €</span>
+                                 </div>
+                                 <button type="button" class="botao-pedir" onclick="abrirPopup()">Pedir</button>
                              </div>
-
-                             <form method="POST">
-                                <input type="hidden" name="acao" value="finalizar">
-                                <button type="submit" class="botao-pedir">Pedir</button>
-                             </form>
                         </div>
 
                     </div>
@@ -259,5 +253,68 @@ if (!empty($_SESSION['carrinho'])) {
             </div>
         </main>
     </div>
+
+    <div id="popupConfirmacao" class="modal" onclick="fecharPopup(event)">
+        <div class="modal-conteudo">
+            
+            <form method="POST" action="carrinho.php" style="display:flex; width:100%; gap:40px;">
+                <input type="hidden" name="acao" value="finalizar">
+
+                <div class="modal-coluna-esquerda">
+                    <h3 style="margin-bottom:15px; font-weight:600;">Pagamento</h3>
+                    
+                    <label class="opcao-pagamento">
+                        <input type="radio" name="pagamento" value="Numerário" required>
+                        Pagar ao Balcão
+                    </label>
+
+                    <label class="opcao-pagamento">
+                        <input type="radio" name="pagamento" value="MBWAY">
+                        MB WAY
+                    </label>
+
+                    <div style="margin-top:20px;">
+                        <h4 style="font-size:14px; margin-bottom:5px;">Agendar para:</h4>
+                        <input type="time" name="hora" class="input-hora" value="<?php echo date('H:i', strtotime('+15 minutes')); ?>" required>
+                    </div>
+                </div>
+
+                <div class="modal-coluna-direita">
+                    <div>
+                        <div class="modal-lista-itens">
+                            <?php foreach ($produtos_carrinho as $item): ?>
+                                <div class="linha-resumo">
+                                    <span><?php echo htmlspecialchars($item['nome']); ?></span>
+                                    <span class="qtd-mini">x<?php echo $item['qtd_carrinho']; ?></span>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+
+                    <div>
+                        <hr class="mini-divisor">
+                        <div class="linha-total">
+                            <span>Total</span>
+                            <span><?php echo number_format($total_pedido, 2); ?> €</span>
+                        </div>
+                        <button type="submit" class="botao-pedir">Pedir</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <script>
+        function abrirPopup() {
+            document.getElementById('popupConfirmacao').style.display = 'flex';
+        }
+
+        function fecharPopup(event) {
+            if (event.target.id === 'popupConfirmacao') {
+                document.getElementById('popupConfirmacao').style.display = 'none';
+            }
+        }
+    </script>
 </body>
 </html>

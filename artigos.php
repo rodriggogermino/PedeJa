@@ -121,7 +121,7 @@ $display_badge = ($total_carrinho > 0) ? 'inline-block' : 'none';
                         <li><a href="pedidosAdmin.php">Pedidos</a></li>
                     <?php else: ?>
                         <li><a href="artigos.php" class="ativo">Encomendar</a></li>
-                        <li><a href="historicoAluno.html">Histórico</a></li>
+                        <li><a href="historicoAluno.php">Histórico</a></li>
                         <li>
                             <a href="carrinho.php">
                                 Carrinho 
@@ -212,6 +212,5 @@ $display_badge = ($total_carrinho > 0) ? 'inline-block' : 'none';
         </main>
     </div>
     <script src="js/script.js"></script>
-    <script src="js/catProduto.js"></script>
-</body>
+    </body>
 </html>

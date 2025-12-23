@@ -35,6 +35,50 @@ function getClasseEstado($estado) {
     <title>Dashboard - PedeJá</title>
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .barra-progresso-mini {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 200px;
+            margin-top: 10px;
+            position: relative;
+        }
+        .passo-mini {
+            width: 12px;
+            height: 12px;
+            background-color: #e0e0e0;
+            border-radius: 50%;
+            z-index: 2;
+            transition: background-color 0.3s;
+            border: 2px solid #fff; 
+        }
+        .linha-mini {
+            flex: 1;
+            height: 3px;
+            background-color: #e0e0e0;
+            margin: 0 -2px;
+            z-index: 1;
+            transition: background-color 0.3s;
+        }
+        .passo-mini.ativo {
+            background-color: #fff;
+            border: 3px solid #e85d04;
+            width: 14px;
+            height: 14px;
+        }
+        .linha-mini.ativo {
+            background-color: #e85d04;
+        }
+        .texto-estado-visual {
+            font-size: 14px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 5px;
+            display: block;
+        }
+    </style>
 </head>
 <body>
 
@@ -109,7 +153,7 @@ function getClasseEstado($estado) {
                     </div>
                 <?php else: ?>
                     <div style="display: flex; gap: 20px; width: 100%;">
-                        <div class="texto-destaque">
+                        <div class="texto-destaque" style="display: flex; flex-direction: column; justify-content: center;">
                             <?php
                             $sql_ultimo = "SELECT id_pedido, estado, data FROM pedido WHERE utilizador_id = ? ORDER BY data DESC LIMIT 1";
                             if ($stmt = $conn->prepare($sql_ultimo)) {
@@ -119,9 +163,31 @@ function getClasseEstado($estado) {
 
                                 if ($result_ultimo->num_rows > 0) {
                                     $row_ultimo = $result_ultimo->fetch_assoc();
-                                    $classe_estado = getClasseEstado($row_ultimo['estado']);
-                                    echo '<span class="texto-leve">Último pedido: #' . $row_ultimo['id_pedido'] . '</span><br>';
-                                    echo '<strong class="'.$classe_estado.'" style="padding: 2px 8px; border-radius: 4px;">' . strtoupper($row_ultimo['estado']) . '</strong>';
+                                    $estado = $row_ultimo['estado'];
+                                    
+                                    // Lógica da Barra de Progresso
+                                    $p1 = "ativo"; $l1 = ""; $p2 = ""; $l2 = ""; $p3 = "";
+                                    
+                                    if ($estado == 'Em Preparação') {
+                                        $l1 = "ativo";
+                                        $p2 = "ativo";
+                                    } elseif ($estado == 'Entregue') {
+                                        $l1 = "ativo"; $p2 = "ativo";
+                                        $l2 = "ativo"; $p3 = "ativo";
+                                    }
+
+                                    echo '<span class="texto-leve">Último pedido: #' . $row_ultimo['id_pedido'] . '</span>';
+                                    echo '<span class="texto-estado-visual">' . strtoupper($estado) . '</span>';
+                                    
+                                    // HTML da Barra
+                                    echo '<div class="barra-progresso-mini">';
+                                    echo '<div class="passo-mini ' . $p1 . '" title="Pendente"></div>';
+                                    echo '<div class="linha-mini ' . $l1 . '"></div>';
+                                    echo '<div class="passo-mini ' . $p2 . '" title="Em Preparação"></div>';
+                                    echo '<div class="linha-mini ' . $l2 . '"></div>';
+                                    echo '<div class="passo-mini ' . $p3 . '" title="Entregue"></div>';
+                                    echo '</div>';
+
                                 } else {
                                     echo '<span class="texto-leve">Sem</span> <strong>pedidos<br>recentes</strong>';
                                 }
@@ -144,10 +210,14 @@ function getClasseEstado($estado) {
                     <h3>Histórico de Pedidos</h3> 
                     <div class="controlos">
                         <div class="caixa-pesquisa">
-                            <input type="text" placeholder="Pesquisar">
+                            <input type="text" id="pesquisaHistorico" placeholder="Pesquisar...">
                         </div>
-                        <button class="botao-icone"><i class="fa-solid fa-bars"></i></button>
-                        <button class="botao-icone"><i class="fa-solid fa-filter"></i></button>
+                        <button class="botao-icone" id="btnSortId" title="Ordenar por ID">
+                            <i class="fa-solid fa-arrow-down-1-9"></i>
+                        </button>
+                        <button class="botao-icone" id="btnSortData" title="Ordenar por Data">
+                            <i class="fa-regular fa-calendar"></i>
+                        </button>
                     </div>
                 </div>
 
@@ -157,6 +227,7 @@ function getClasseEstado($estado) {
                         $sql = "SELECT p.id_pedido, p.data, p.estado, u.nome AS nome_cliente 
                                 FROM pedido p 
                                 JOIN utilizadores u ON p.utilizador_id = u.id_utilizador 
+                                WHERE p.estado = 'Entregue'
                                 ORDER BY p.data DESC LIMIT 10";
                         
                         if($result = $conn->query($sql)){
@@ -172,7 +243,7 @@ function getClasseEstado($estado) {
                                     echo '</div>';
                                 }
                             } else {
-                                echo '<div class="linha-pedido">Sem pedidos registados.</div>';
+                                echo '<div class="linha-pedido">Sem pedidos entregues.</div>';
                             }
                         }
                         ?>
@@ -220,6 +291,7 @@ function getClasseEstado($estado) {
                     $sql_recentes = "SELECT p.id_pedido, p.data, p.hora_Agendada, u.nome AS nome_cliente 
                                      FROM pedido p 
                                      JOIN utilizadores u ON p.utilizador_id = u.id_utilizador 
+                                     WHERE p.estado != 'Entregue'
                                      ORDER BY p.data DESC LIMIT 5";
                     
                     if ($stmt_recentes = $conn->prepare($sql_recentes)) {
@@ -243,12 +315,12 @@ function getClasseEstado($estado) {
                                 echo '</div>';
                                 echo '<div class="rodape-rc">';
                                 echo '<span class="hora-rc">' . $hora . '</span>';
-                                echo '<button class="botao-ver" onclick="location.href=\'ver_pedidoAdmin.html\'">Ver</button>';
+                                echo '<button class="botao-ver" onclick="location.href=\'ver_pedidoAdmin.php?id=' . $row['id_pedido'] . '\'">Ver</button>';
                                 echo '</div>';
                                 echo '</div>';
                             }
                         } else {
-                            echo '<p style="text-align:center; color:#666;">Sem pedidos recentes.</p>';
+                            echo '<p style="text-align:center; color:#666; font-size: 0.9em; margin-top:20px;">Sem pedidos pendentes.</p>';
                         }
                         $stmt_recentes->close();
                     }
@@ -301,5 +373,85 @@ function getClasseEstado($estado) {
 
     </div>
     <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputPesquisa = document.getElementById('pesquisaHistorico');
+            const btnSortId = document.getElementById('btnSortId');
+            const btnSortData = document.getElementById('btnSortData');
+            const contentorPedidos = document.querySelector('.lista-pedidos');
+            
+            let ordemIdAsc = true;
+            let ordemDataRecente = true;
+
+            if (inputPesquisa) {
+                inputPesquisa.addEventListener('keyup', function() {
+                    const termo = this.value.toLowerCase();
+                    const linhas = document.querySelectorAll('.linha-pedido');
+
+                    linhas.forEach(linha => {
+                        if(linha.innerText.includes('Sem pedidos') || linha.innerText.includes('Ainda não')) return;
+
+                        const textoLinha = linha.innerText.toLowerCase();
+                        if (textoLinha.includes(termo)) {
+                            linha.style.display = 'flex';
+                        } else {
+                            linha.style.display = 'none';
+                        }
+                    });
+                });
+            }
+
+            if (btnSortId && contentorPedidos) {
+                btnSortId.addEventListener('click', function() {
+                    ordenarPedidos('id');
+                    const icon = this.querySelector('i');
+                    if(ordemIdAsc) {
+                        icon.className = 'fa-solid fa-arrow-down-1-9';
+                    } else {
+                        icon.className = 'fa-solid fa-arrow-up-1-9';
+                    }
+                });
+            }
+
+            if (btnSortData && contentorPedidos) {
+                btnSortData.addEventListener('click', function() {
+                    ordenarPedidos('data');
+                });
+            }
+
+            function ordenarPedidos(tipo) {
+                let linhas = Array.from(document.querySelectorAll('.linha-pedido'));
+                linhas = linhas.filter(linha => !linha.innerText.includes('Sem pedidos') && !linha.innerText.includes('Ainda não'));
+
+                linhas.sort((a, b) => {
+                    let valA, valB;
+
+                    if (tipo === 'id') {
+                        const textoA = a.querySelector('.coluna:nth-child(1)').innerText;
+                        const textoB = b.querySelector('.coluna:nth-child(1)').innerText;
+                        
+                        valA = parseInt(textoA.replace(/\D/g, ''));
+                        valB = parseInt(textoB.replace(/\D/g, ''));
+                        
+                        return ordemIdAsc ? (valA - valB) : (valB - valA);
+                    } 
+                    else if (tipo === 'data') {
+                        const textoA = a.querySelector('.coluna:nth-child(2)').innerText.replace('DATA:', '').trim();
+                        const textoB = b.querySelector('.coluna:nth-child(2)').innerText.replace('DATA:', '').trim();
+                        
+                        valA = new Date(textoA);
+                        valB = new Date(textoB);
+
+                        return ordemDataRecente ? (valB - valA) : (valA - valB);
+                    }
+                });
+
+                if (tipo === 'id') ordemIdAsc = !ordemIdAsc;
+                if (tipo === 'data') ordemDataRecente = !ordemDataRecente;
+
+                linhas.forEach(linha => contentorPedidos.appendChild(linha));
+            }
+        });
+    </script>
 </body>
 </html>
