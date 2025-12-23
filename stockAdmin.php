@@ -35,7 +35,12 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != 1) {
     exit;
 }
 
-$sql = "SELECT a.*, c.nome AS nome_categoria FROM artigos a JOIN categorias c ON a.categoria_id = c.id_categoria ORDER BY a.nome ASC";
+$nome_utilizador = $_SESSION['nome'];
+
+$sql = "SELECT a.*, c.nome AS nome_categoria 
+        FROM artigos a 
+        JOIN categorias c ON a.categoria_id = c.id_categoria 
+        ORDER BY a.nome ASC";
 $result = $conn->query($sql);
 ?>
 
@@ -59,7 +64,7 @@ $result = $conn->query($sql);
                     <i class="fa-solid fa-user"></i>
                 </div>
                 <div class="info-utilizador">
-                    <strong><?php echo htmlspecialchars($_SESSION['nome']); ?></strong>
+                    <strong><?php echo htmlspecialchars($nome_utilizador); ?></strong>
                     <span>Administrador</span>
                 </div>
             </div>
@@ -68,7 +73,7 @@ $result = $conn->query($sql);
                 <ul>
                     <li><a href="index.php">Início</a></li>
                     <li><a href="artigosAdmin.php">Artigos</a></li>
-                    <li><a href="#" class="ativo">Stock</a></li>
+                    <li><a href="stockAdmin.php" class="ativo">Stock</a></li>
                     <li><a href="historicoAdmin.php">Histórico</a></li>
                     <li><a href="pedidosAdmin.php">Pedidos</a></li>
                 </ul>
@@ -80,16 +85,19 @@ $result = $conn->query($sql);
 
         <main class="conteudo-principal">
             <header class="cabecalho-pagina">
-                <h2>Olá, <br><strong><?php echo htmlspecialchars($_SESSION['nome']); ?>!</strong></h2>
+                <h2>Olá, <br><strong><?php echo htmlspecialchars($nome_utilizador); ?>!</strong></h2>
             </header>
+
             <div class="caixa-conteudo">
                 <div class="cabecalho-caixa">
                     <div class="lado-esquerdo-cabecalho" style="display: flex; align-items: center; gap: 15px;">
-                        <h3>Todos os artigos:</h3>
-                        <button class="botao-adicionar" onclick="location.href='addArtigos.php'" style="width: 30px; height: 30px; border-radius: 50%; border: none; background: #e85d04; color: white; cursor: pointer;"><i class="fa-solid fa-plus"></i></button>
+                        <h3>Gestão de Stock:</h3>
+                        <button class="botao-adicionar" onclick="location.href='addArtigos.php'" style="width: 30px; height: 30px; border-radius: 50%; border: none; background: #e85d04; color: white; cursor: pointer;">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
                     </div>
                     <div class="pesquisa-pill">
-                        <input type="text" id="barraPesquisa" placeholder="Pesquisar" onkeyup="filtrarPesquisa()">
+                        <input type="text" id="barraPesquisa" placeholder="Pesquisar produto..." onkeyup="filtrarPesquisa()">
                     </div>
                 </div>
 
@@ -110,19 +118,24 @@ $result = $conn->query($sql);
                     <?php if ($result->num_rows > 0): ?>
                         <?php while($row = $result->fetch_assoc()): ?>
                             <?php $catSlug = strtolower($row['nome_categoria']); ?>
+                            
                             <div class="cartao-stock" id="artigo-<?php echo $row['id_artigos']; ?>" data-item="<?php echo $catSlug; ?>">
                                 <button class="botao-fechar" onclick="eliminarArtigo(<?php echo $row['id_artigos']; ?>)">
                                     <i class="fa-solid fa-xmark"></i>
                                 </button>
+                                
                                 <div class="conteudo-cartao">
                                     <div class="envoltorio-imagem">
                                         <img src="<?php echo !empty($row['imagem']) ? $row['imagem'] : 'images/default.png'; ?>" alt="<?php echo htmlspecialchars($row['nome']); ?>">
                                     </div>
                                     <div class="envoltorio-info">
                                         <h4><?php echo htmlspecialchars($row['nome']); ?></h4>
-                                        <span><?php echo htmlspecialchars($row['nome_categoria']); ?></span>
+                                        <p style="color: #666; font-size: 0.85rem; margin-top: 5px; line-height: 1.2;">
+                                            <?php echo htmlspecialchars($row['desc_artigo']); ?>
+                                        </p>
                                     </div>
                                 </div>
+
                                 <div class="envoltorio-contador">
                                     <button class="botao-contador" onclick="alterarStock(<?php echo $row['id_artigos']; ?>, -1)">
                                         <i class="fa-solid fa-minus"></i>
@@ -135,9 +148,10 @@ $result = $conn->query($sql);
                                     </button>
                                 </div>
                             </div>
+
                         <?php endwhile; ?>
                     <?php else: ?>
-                        <p style="padding: 20px;">Sem artigos registados.</p>
+                        <p style="padding: 20px;">Não foram encontrados artigos na base de dados.</p>
                     <?php endif; ?>
                 </div>
             </div>
@@ -153,12 +167,14 @@ $result = $conn->query($sql);
             })
             .then(res => res.json())
             .then(data => {
-                if (data.sucesso) document.getElementById('stock-' + id).innerText = data.novo_stock;
+                if (data.sucesso) {
+                    document.getElementById('stock-' + id).innerText = data.novo_stock;
+                }
             });
         }
 
         function eliminarArtigo(id) {
-            if (confirm("Eliminar artigo?")) {
+            if (confirm("Tem a certeza que deseja eliminar este artigo permanentemente?")) {
                 fetch('stockAdmin.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -166,7 +182,12 @@ $result = $conn->query($sql);
                 })
                 .then(res => res.json())
                 .then(data => {
-                    if (data.sucesso) document.getElementById('artigo-' + id).remove();
+                    if (data.sucesso) {
+                        document.getElementById('artigo-' + id).style.opacity = '0';
+                        setTimeout(() => {
+                            document.getElementById('artigo-' + id).remove();
+                        }, 300);
+                    }
                 });
             }
         }
@@ -174,8 +195,13 @@ $result = $conn->query($sql);
         function filtrarCategoria(cat, elemento) {
             document.querySelectorAll('.lista-cat li').forEach(li => li.classList.remove('ativo'));
             elemento.classList.add('ativo');
+
             document.querySelectorAll('.cartao-stock').forEach(item => {
-                item.style.display = (cat === 'todos' || item.getAttribute('data-item') === cat) ? 'flex' : 'none';
+                if (cat === 'todos' || item.getAttribute('data-item') === cat) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
             });
         }
 
@@ -183,7 +209,11 @@ $result = $conn->query($sql);
             let input = document.getElementById('barraPesquisa').value.toLowerCase();
             document.querySelectorAll('.cartao-stock').forEach(item => {
                 let nome = item.querySelector('h4').innerText.toLowerCase();
-                item.style.display = nome.includes(input) ? 'flex' : 'none';
+                if (nome.includes(input)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
             });
         }
     </script>
