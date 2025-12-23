@@ -44,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt->execute();
                 $pedido_id = $conn->insert_id;
                 $stmt->close();
+
                 foreach ($_SESSION['carrinho'] as $id_artigo => $qtd) {
                     $sql_preco = "SELECT preco, stock FROM artigos WHERE id_artigos = $id_artigo";
                     $res_preco = $conn->query($sql_preco);
@@ -55,6 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $stmt_item->bind_param("iiid", $pedido_id, $id_artigo, $qtd, $dados_artigo['preco']);
                     $stmt_item->execute();
                     $stmt_item->close();
+                    
                     $conn->query("UPDATE artigos SET stock = stock - $qtd WHERE id_artigos = $id_artigo");
                 }
                 $conn->commit();
@@ -121,9 +123,16 @@ if (!empty($_SESSION['carrinho'])) {
                 <div class="etiqueta-menu">Menu</div>
                 <ul>
                     <li><a href="index.php">Início</a></li>
-                    <li><a href="artigos.php">Encomendar</a></li>
-                    <li><a href="historicoAluno.html">Histórico</a></li>
-                    <li><a href="carrinho.php" class="ativo">Carrinho</a></li>
+                    <?php if ($isAdmin == 1): ?>
+                        <li><a href="artigos.php">Artigos</a></li>
+                        <li><a href="stockAdmin.php">Stock</a></li>
+                        <li><a href="historicoAdmin.php">Histórico</a></li>
+                        <li><a href="pedidosAdmin.php">Pedidos</a></li>
+                    <?php else: ?>
+                        <li><a href="artigos.php">Encomendar</a></li>
+                        <li><a href="historicoAluno.php">Histórico</a></li>
+                        <li><a href="carrinho.php" class="ativo">Carrinho</a></li>
+                    <?php endif; ?>
                 </ul>
             </nav>
 
@@ -136,7 +145,7 @@ if (!empty($_SESSION['carrinho'])) {
             
             <header class="cabecalho-topo">
                 <div class="saudacao">
-                    <h2>Olá, <br><strong><?php echo htmlspecialchars($_SESSION['nome']); ?>!</strong></h2>
+                    <h2>Olá,<br><strong><?php echo htmlspecialchars($_SESSION['nome']); ?>!</strong></h2>
                 </div>
             </header>
 
@@ -220,7 +229,8 @@ if (!empty($_SESSION['carrinho'])) {
                             <?php endforeach; ?>
                         </div>
 
-                        <div class="coluna-resumo"> <div class="lista-resumo">
+                        <div class="coluna-resumo">
+                            <div class="lista-resumo">
                                 <?php foreach ($produtos_carrinho as $item): ?>
                                     <div class="linha-resumo">
                                         <span><?php echo htmlspecialchars($item['nome']); ?></span>
