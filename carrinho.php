@@ -135,7 +135,7 @@ if (!empty($_SESSION['carrinho'])) {
                         <li><a href="pedidosAdmin.php">Pedidos</a></li>
                     <?php else: ?>
                         <li><a href="artigos.php">Encomendar</a></li>
-                        <li><a href="historicoAluno.html">Histórico</a></li>
+                        <li><a href="historicoAluno.php">Histórico</a></li>
                         <li><a href="carrinho.php" class="ativo">Carrinho</a></li>
                     <?php endif; ?>
                 </ul>
