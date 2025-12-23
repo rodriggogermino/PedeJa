@@ -117,12 +117,12 @@ $result = $conn->query($sql);
                     
                     <?php if ($isAdmin == 1): ?>
                         <li><a href="artigos.php" class="ativo">Artigos</a></li>
-                        <li><a href="stockAdmin.php">Stock</a></li> <li><a href="historicoAdmin.html">Histórico</a></li>
-                        <li><a href="pedidosAdmin.html">Pedidos</a></li>
+                        <li><a href="stockAdmin.php">Stock</a></li> <li><a href="historicoAdmin.php">Histórico</a></li>
+                        <li><a href="pedidosAdmin.php">Pedidos</a></li>
                     <?php else: ?>
                         <li><a href="artigos.php" class="ativo">Encomendar</a></li>
-                        <li><a href="historicoAluno.html">Histórico</a></li>
-                        <li><a href="carrinhoAluno.html">Carrinho <span id="badge-carrinho" style="background:red; color:white; padding:2px 6px; border-radius:10px; font-size:12px; display:none;">0</span></a></li>
+                        <li><a href="historicoAluno.php">Histórico</a></li>
+                        <li><a href="carrinhoAluno.php">Carrinho <span id="badge-carrinho" style="background:red; color:white; padding:2px 6px; border-radius:10px; font-size:12px; display:none;">0</span></a></li>
                     <?php endif; ?>
                 </ul>
             </nav>
