@@ -144,22 +144,19 @@ function getClasseEstado($estado) {
                     <h3>Histórico de Pedidos</h3> 
                     <div class="controlos">
                         <div class="caixa-pesquisa">
-                            <input type="text" id="pesquisaHistorico" placeholder="Pesquisar...">
+                            <input type="text" placeholder="Pesquisar">
                         </div>
-                        <button class="botao-icone" id="btnSortId" title="Ordenar por ID">
-                            <i class="fa-solid fa-bars"></i>
-                        </button>
-                        <button class="botao-icone" id="btnSortData" title="Ordenar por Data">
-                            <i class="fa-regular fa-calendar"></i>
-                        </button>
+                        <button class="botao-icone"><i class="fa-solid fa-bars"></i></button>
+                        <button class="botao-icone"><i class="fa-solid fa-filter"></i></button>
                     </div>
                 </div>
+
+                <div class="lista-pedidos">
                     <?php if ($isAdmin == 1): ?>
                         <?php
                         $sql = "SELECT p.id_pedido, p.data, p.estado, u.nome AS nome_cliente 
                                 FROM pedido p 
                                 JOIN utilizadores u ON p.utilizador_id = u.id_utilizador 
-                                WHERE p.estado = 'Entregue'
                                 ORDER BY p.data DESC LIMIT 10";
                         
                         if($result = $conn->query($sql)){
@@ -175,7 +172,7 @@ function getClasseEstado($estado) {
                                     echo '</div>';
                                 }
                             } else {
-                                echo '<div class="linha-pedido">Sem pedidos entregues.</div>';
+                                echo '<div class="linha-pedido">Sem pedidos registados.</div>';
                             }
                         }
                         ?>
@@ -223,7 +220,6 @@ function getClasseEstado($estado) {
                     $sql_recentes = "SELECT p.id_pedido, p.data, p.hora_Agendada, u.nome AS nome_cliente 
                                      FROM pedido p 
                                      JOIN utilizadores u ON p.utilizador_id = u.id_utilizador 
-                                     WHERE p.estado != 'Entregue'
                                      ORDER BY p.data DESC LIMIT 5";
                     
                     if ($stmt_recentes = $conn->prepare($sql_recentes)) {
@@ -247,12 +243,12 @@ function getClasseEstado($estado) {
                                 echo '</div>';
                                 echo '<div class="rodape-rc">';
                                 echo '<span class="hora-rc">' . $hora . '</span>';
-                                echo '<button class="botao-ver" onclick="location.href=\'ver_pedidoAdmin.php?id=' . $row['id_pedido'] . '\'">Ver</button>';
+                                echo '<button class="botao-ver" onclick="location.href=\'ver_pedidoAdmin.html\'">Ver</button>';
                                 echo '</div>';
                                 echo '</div>';
                             }
                         } else {
-                            echo '<p style="text-align:center; color:#666; font-size: 0.9em; margin-top:20px;">Sem pedidos pendentes.</p>';
+                            echo '<p style="text-align:center; color:#666;">Sem pedidos recentes.</p>';
                         }
                         $stmt_recentes->close();
                     }
