@@ -63,7 +63,7 @@ $result = $stmt->get_result();
                     <li><a href="index.php">Início</a></li>
                     <li><a href="artigos.php">Encomendar</a></li>
                     <li><a href="historicoAluno.php" class="ativo">Histórico</a></li>
-                    <li><a href="carrinhoAluno.php">Carrinho</a></li>
+                    <li><a href="carrinho.php">Carrinho</a></li>
                 </ul>
             </nav>
 
