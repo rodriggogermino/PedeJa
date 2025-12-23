@@ -153,9 +153,7 @@ if (!empty($_SESSION['carrinho'])) {
                 <h2>Olá, <br><strong><?php echo htmlspecialchars($nome_utilizador); ?>!</strong></h2>
             </header>
             </header>
-
             <div class="contentor-carrinho">
-                
                 <div class="cabecalho-carrinho">
                     <h3>Meu pedido:</h3>
                     <hr class="divisor" style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
