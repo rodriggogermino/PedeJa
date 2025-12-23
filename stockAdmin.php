@@ -7,7 +7,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true || !isset($_
     exit;
 }
 
-$nome_utilizador = $_SESSION['nome']; 
+$nome_utilizador = $_SESSION['nome'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Content-Type: application/json');
@@ -17,8 +17,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($data['acao'] === 'atualizar') {
             $id = $data['id'];
             $qtd = $data['quantidade'];
+            
             $stmt = $conn->prepare("UPDATE artigos SET stock = GREATEST(0, stock + ?) WHERE id_artigos = ?");
             $stmt->bind_param("ii", $qtd, $id);
+            
             if ($stmt->execute()) {
                 $res = $conn->query("SELECT stock FROM artigos WHERE id_artigos = $id");
                 $row = $res->fetch_assoc();
@@ -27,7 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo json_encode(['sucesso' => false]);
             }
             exit;
-        } elseif ($data['acao'] === 'eliminar') {
+        } 
+        elseif ($data['acao'] === 'eliminar') {
             $id = $data['id'];
             $stmt = $conn->prepare("DELETE FROM artigos WHERE id_artigos = ?");
             $stmt->bind_param("i", $id);
@@ -37,7 +40,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$sql = "SELECT a.*, c.nome AS nome_categoria FROM artigos a JOIN categorias c ON a.categoria_id = c.id_categoria ORDER BY a.nome ASC";
+$sql = "SELECT a.*, c.nome AS nome_categoria 
+        FROM artigos a 
+        JOIN categorias c ON a.categoria_id = c.id_categoria 
+        ORDER BY a.nome ASC";
 $result = $conn->query($sql);
 ?>
 
@@ -52,6 +58,7 @@ $result = $conn->query($sql);
 </head>
 <body>
     <div class="contentor-dashboard">
+        
         <aside class="barra-lateral">
             <div class="marca">
                 <h1><a href="index.php" style="text-decoration: none; color: inherit;">PedeJá</a></h1>
@@ -69,7 +76,8 @@ $result = $conn->query($sql);
                 <div class="etiqueta-menu">Menu</div>
                 <ul>
                     <li><a href="index.php">Início</a></li>
-                    <li><a href="artigos.php">Artigos</a></li> <li><a href="stockAdmin.php" class="ativo">Stock</a></li>
+                    <li><a href="artigos.php">Artigos</a></li>
+                    <li><a href="stockAdmin.php" class="ativo">Stock</a></li>
                     <li><a href="historicoAdmin.php">Histórico</a></li>
                     <li><a href="pedidosAdmin.php">Pedidos</a></li>
                 </ul>
@@ -83,14 +91,17 @@ $result = $conn->query($sql);
             <header class="cabecalho-pagina">
                 <h2>Olá, <br><strong><?php echo htmlspecialchars($nome_utilizador); ?>!</strong></h2>
             </header>
+            
             <div class="caixa-conteudo">
                 <div class="cabecalho-caixa">
                     <div class="lado-esquerdo-cabecalho" style="display: flex; align-items: center; gap: 15px;">
-                        <h3>Todos os artigos:</h3>
-                        <button class="botao-adicionar" onclick="location.href='addArtigos.php'" style="width: 30px; height: 30px; border-radius: 50%; border: none; background: #e85d04; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-plus"></i></button>
+                        <h3>Gestão de Stock:</h3>
+                        <button class="botao-adicionar" onclick="location.href='addArtigos.php'" style="width: 30px; height: 30px; border-radius: 50%; border: none; background: #e85d04; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
                     </div>
                     <div class="pesquisa-pill">
-                        <input type="text" id="barraPesquisa" placeholder="Pesquisar" onkeyup="filtrarPesquisa()">
+                        <input type="text" id="barraPesquisa" placeholder="Pesquisar produto..." onkeyup="filtrarPesquisa()">
                     </div>
                 </div>
 
@@ -110,19 +121,22 @@ $result = $conn->query($sql);
                     <?php if ($result && $result->num_rows > 0): ?>
                         <?php while($row = $result->fetch_assoc()): ?>
                             <?php $catSlug = strtolower($row['nome_categoria']); ?>
+                            
                             <div class="cartao-stock" id="artigo-<?php echo $row['id_artigos']; ?>" data-item="<?php echo $catSlug; ?>">
                                 <button class="botao-fechar" onclick="eliminarArtigo(<?php echo $row['id_artigos']; ?>)">
                                     <i class="fa-solid fa-xmark"></i>
                                 </button>
+                                
                                 <div class="conteudo-cartao">
                                     <div class="envoltorio-imagem">
                                         <img src="<?php echo !empty($row['imagem']) ? $row['imagem'] : 'images/default.png'; ?>" alt="<?php echo htmlspecialchars($row['nome']); ?>">
                                     </div>
                                     <div class="envoltorio-info">
                                         <h4><?php echo htmlspecialchars($row['nome']); ?></h4>
-                                        <span><?php echo htmlspecialchars($row['nome_categoria']); ?></span>
+                                        <span style="color: #888; font-size: 0.9em;"><?php echo htmlspecialchars($row['nome_categoria']); ?></span>
                                     </div>
                                 </div>
+
                                 <div class="envoltorio-contador">
                                     <button class="botao-contador" onclick="alterarStock(<?php echo $row['id_artigos']; ?>, -1)">
                                         <i class="fa-solid fa-minus"></i>
@@ -135,9 +149,10 @@ $result = $conn->query($sql);
                                     </button>
                                 </div>
                             </div>
+
                         <?php endwhile; ?>
                     <?php else: ?>
-                        <p style="padding: 20px;">Sem artigos registados.</p>
+                        <p style="padding: 20px;">Não foram encontrados artigos na base de dados.</p>
                     <?php endif; ?>
                 </div>
             </div>
@@ -153,12 +168,15 @@ $result = $conn->query($sql);
             })
             .then(res => res.json())
             .then(data => {
-                if (data.sucesso) document.getElementById('stock-' + id).innerText = data.novo_stock;
-            });
+                if (data.sucesso) {
+                    document.getElementById('stock-' + id).innerText = data.novo_stock;
+                }
+            })
+            .catch(err => console.error("Erro:", err));
         }
 
         function eliminarArtigo(id) {
-            if (confirm("Tem a certeza que deseja eliminar este artigo?")) {
+            if (confirm("Tem a certeza que deseja eliminar este artigo permanentemente?")) {
                 fetch('stockAdmin.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -166,17 +184,31 @@ $result = $conn->query($sql);
                 })
                 .then(res => res.json())
                 .then(data => {
-                    if (data.sucesso) document.getElementById('artigo-' + id).remove();
-                    else alert("Erro ao eliminar.");
-                });
+                    if (data.sucesso) {
+                        const elemento = document.getElementById('artigo-' + id);
+                        elemento.style.transition = 'opacity 0.3s';
+                        elemento.style.opacity = '0';
+                        setTimeout(() => {
+                            elemento.remove();
+                        }, 300);
+                    } else {
+                        alert("Erro ao eliminar o artigo.");
+                    }
+                })
+                .catch(err => console.error("Erro:", err));
             }
         }
 
         function filtrarCategoria(cat, elemento) {
             document.querySelectorAll('.lista-cat li').forEach(li => li.classList.remove('ativo'));
             elemento.classList.add('ativo');
+
             document.querySelectorAll('.cartao-stock').forEach(item => {
-                item.style.display = (cat === 'todos' || item.getAttribute('data-item') === cat) ? 'flex' : 'none';
+                if (cat === 'todos' || item.getAttribute('data-item') === cat) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
             });
         }
 
@@ -184,7 +216,11 @@ $result = $conn->query($sql);
             let input = document.getElementById('barraPesquisa').value.toLowerCase();
             document.querySelectorAll('.cartao-stock').forEach(item => {
                 let nome = item.querySelector('h4').innerText.toLowerCase();
-                item.style.display = nome.includes(input) ? 'flex' : 'none';
+                if (nome.includes(input)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
             });
         }
     </script>
