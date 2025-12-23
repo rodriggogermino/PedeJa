@@ -2,17 +2,16 @@
 session_start();
 require_once 'config.php';
 
-// Verificar login
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     header("Location: login.php");
     exit;
 }
 
+$nome_utilizador = $_SESSION['nome'];
 $user_id = $_SESSION['id_utilizador'];
 $isAdmin = isset($_SESSION['isAdmin']) ? $_SESSION['isAdmin'] : 0; 
 $cargo = ($isAdmin == 1) ? "Administrador" : "Aluno";
 $menu_ativo = ($isAdmin == 1) ? "Artigos" : "Encomendar"; 
-
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $isAdmin == 0) {
     header('Content-Type: application/json');
@@ -57,7 +56,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $isAdmin == 0) {
     }
 }
 
-
 if ($isAdmin == 0) {
     $sql = "SELECT a.*, c.nome AS nome_categoria, 
             (SELECT COUNT(*) FROM favoritos f WHERE f.artigo_id = a.id_artigos AND f.utilizador_id = $user_id) as is_favorito
@@ -66,7 +64,6 @@ if ($isAdmin == 0) {
             WHERE a.stock > 0
             ORDER BY a.nome ASC";
 } else {
-    
     $sql = "SELECT a.*, c.nome AS nome_categoria 
             FROM artigos a 
             JOIN categorias c ON a.categoria_id = c.id_categoria
@@ -74,6 +71,9 @@ if ($isAdmin == 0) {
 }
 
 $result = $conn->query($sql);
+
+$total_carrinho = isset($_SESSION['carrinho']) ? array_sum($_SESSION['carrinho']) : 0;
+$display_badge = ($total_carrinho > 0) ? 'inline-block' : 'none';
 ?>
 
 <!DOCTYPE html>
@@ -87,7 +87,6 @@ $result = $conn->query($sql);
     <style>
         .favorito-ativo { color: #ffbf00; }
         .favorito-inativo { color: #ccc; }
-        /* Esconder botões se não houver lógica para eles, só por segurança visual */
         .hidden { display: none !important; }
     </style>
 </head>
@@ -105,7 +104,7 @@ $result = $conn->query($sql);
                     <i class="fa-solid fa-user"></i>
                 </div>
                 <div class="info-utilizador">
-                    <strong><?php echo htmlspecialchars($_SESSION['nome']); ?></strong>
+                    <strong><?php echo htmlspecialchars($nome_utilizador); ?></strong>
                     <span><?php echo $cargo; ?></span>
                 </div>
             </div>
@@ -117,12 +116,20 @@ $result = $conn->query($sql);
                     
                     <?php if ($isAdmin == 1): ?>
                         <li><a href="artigos.php" class="ativo">Artigos</a></li>
-                        <li><a href="stockAdmin.php">Stock</a></li> <li><a href="historicoAdmin.html">Histórico</a></li>
-                        <li><a href="pedidosAdmin.html">Pedidos</a></li>
+                        <li><a href="stockAdmin.php">Stock</a></li> 
+                        <li><a href="historicoAdmin.php">Histórico</a></li>
+                        <li><a href="pedidosAdmin.php">Pedidos</a></li>
                     <?php else: ?>
                         <li><a href="artigos.php" class="ativo">Encomendar</a></li>
                         <li><a href="historicoAluno.html">Histórico</a></li>
-                        <li><a href="carrinhoAluno.html">Carrinho <span id="badge-carrinho" style="background:red; color:white; padding:2px 6px; border-radius:10px; font-size:12px; display:none;">0</span></a></li>
+                        <li>
+                            <a href="carrinho.php">
+                                Carrinho 
+                                <span id="badge-carrinho" style="background:red; color:white; padding:2px 6px; border-radius:10px; font-size:12px; display: <?php echo $display_badge; ?>;">
+                                    <?php echo $total_carrinho; ?>
+                                </span>
+                            </a>
+                        </li>
                     <?php endif; ?>
                 </ul>
             </nav>
@@ -134,7 +141,7 @@ $result = $conn->query($sql);
 
         <main class="conteudo-principal">
             <header class="cabecalho-pagina">
-                <h2>Olá,<br><strong><?php echo htmlspecialchars($_SESSION['nome']); ?>!</strong></h2>
+                <h2>Olá, <br><strong><?php echo htmlspecialchars($nome_utilizador); ?>!</strong></h2>
             </header>
 
             <div class="caixa-conteudo">
@@ -148,7 +155,6 @@ $result = $conn->query($sql);
                 <div class="filtro-categoria">
                     <span class="etiqueta-cat">Categorias</span>
                     <ul class="lista-cat">
-                        <li class="ativo" onclick="filtrarCategoria('todos', this)">Todos</li>
                         <li onclick="filtrarCategoria('frutas', this)">Frutas</li>
                         <li onclick="filtrarCategoria('salgados', this)">Salgados</li>
                         <li onclick="filtrarCategoria('doces', this)">Doces</li>
@@ -163,7 +169,6 @@ $result = $conn->query($sql);
                         <?php while($row = $result->fetch_assoc()): ?>
                             <?php 
                                 $catSlug = strtolower($row['nome_categoria']); 
-                                // Se for aluno, verifica favorito. Se for admin, assume 0.
                                 $isFav = isset($row['is_favorito']) ? $row['is_favorito'] : 0;
                                 $favClass = ($isFav > 0) ? 'favorito-ativo' : 'favorito-inativo';
                             ?>

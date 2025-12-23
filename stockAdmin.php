@@ -2,6 +2,13 @@
 session_start();
 require_once 'config.php';
 
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true || !isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != 1) {
+    header("Location: login.php");
+    exit;
+}
+
+$nome_utilizador = $_SESSION['nome']; 
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Content-Type: application/json');
     $data = json_decode(file_get_contents("php://input"), true);
@@ -30,11 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != 1) {
-    header("Location: login.php");
-    exit;
-}
-
 $sql = "SELECT a.*, c.nome AS nome_categoria FROM artigos a JOIN categorias c ON a.categoria_id = c.id_categoria ORDER BY a.nome ASC";
 $result = $conn->query($sql);
 ?>
@@ -59,7 +61,7 @@ $result = $conn->query($sql);
                     <i class="fa-solid fa-user"></i>
                 </div>
                 <div class="info-utilizador">
-                    <strong><?php echo htmlspecialchars($_SESSION['nome']); ?></strong>
+                    <strong><?php echo htmlspecialchars($nome_utilizador); ?></strong>
                     <span>Administrador</span>
                 </div>
             </div>
@@ -67,8 +69,7 @@ $result = $conn->query($sql);
                 <div class="etiqueta-menu">Menu</div>
                 <ul>
                     <li><a href="index.php">Início</a></li>
-                    <li><a href="artigosAdmin.php">Artigos</a></li>
-                    <li><a href="#" class="ativo">Stock</a></li>
+                    <li><a href="artigos.php">Artigos</a></li> <li><a href="stockAdmin.php" class="ativo">Stock</a></li>
                     <li><a href="historicoAdmin.php">Histórico</a></li>
                     <li><a href="pedidosAdmin.php">Pedidos</a></li>
                 </ul>
@@ -80,13 +81,13 @@ $result = $conn->query($sql);
 
         <main class="conteudo-principal">
             <header class="cabecalho-pagina">
-                <h2>Olá, <br><strong><?php echo htmlspecialchars($_SESSION['nome']); ?>!</strong></h2>
+                <h2>Olá, <br><strong><?php echo htmlspecialchars($nome_utilizador); ?>!</strong></h2>
             </header>
             <div class="caixa-conteudo">
                 <div class="cabecalho-caixa">
                     <div class="lado-esquerdo-cabecalho" style="display: flex; align-items: center; gap: 15px;">
                         <h3>Todos os artigos:</h3>
-                        <button class="botao-adicionar" onclick="location.href='addArtigos.php'" style="width: 30px; height: 30px; border-radius: 50%; border: none; background: #e85d04; color: white; cursor: pointer;"><i class="fa-solid fa-plus"></i></button>
+                        <button class="botao-adicionar" onclick="location.href='addArtigos.php'" style="width: 30px; height: 30px; border-radius: 50%; border: none; background: #e85d04; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-plus"></i></button>
                     </div>
                     <div class="pesquisa-pill">
                         <input type="text" id="barraPesquisa" placeholder="Pesquisar" onkeyup="filtrarPesquisa()">
@@ -96,7 +97,6 @@ $result = $conn->query($sql);
                 <div class="filtro-categoria">
                     <span class="etiqueta-cat">Categorias</span>
                     <ul class="lista-cat">
-                        <li class="ativo" onclick="filtrarCategoria('todos', this)">Todos</li>
                         <li onclick="filtrarCategoria('frutas', this)">Frutas</li>
                         <li onclick="filtrarCategoria('salgados', this)">Salgados</li>
                         <li onclick="filtrarCategoria('doces', this)">Doces</li>
@@ -107,7 +107,7 @@ $result = $conn->query($sql);
                 </div>
 
                 <div class="grelha-produtos">
-                    <?php if ($result->num_rows > 0): ?>
+                    <?php if ($result && $result->num_rows > 0): ?>
                         <?php while($row = $result->fetch_assoc()): ?>
                             <?php $catSlug = strtolower($row['nome_categoria']); ?>
                             <div class="cartao-stock" id="artigo-<?php echo $row['id_artigos']; ?>" data-item="<?php echo $catSlug; ?>">
@@ -158,7 +158,7 @@ $result = $conn->query($sql);
         }
 
         function eliminarArtigo(id) {
-            if (confirm("Eliminar artigo?")) {
+            if (confirm("Tem a certeza que deseja eliminar este artigo?")) {
                 fetch('stockAdmin.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -167,6 +167,7 @@ $result = $conn->query($sql);
                 .then(res => res.json())
                 .then(data => {
                     if (data.sucesso) document.getElementById('artigo-' + id).remove();
+                    else alert("Erro ao eliminar.");
                 });
             }
         }
