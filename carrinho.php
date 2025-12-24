@@ -17,7 +17,6 @@ $tipo_msg = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
-    // Remover item
     if (isset($_POST['acao']) && $_POST['acao'] === 'remover') {
         $id_remover = intval($_POST['id_artigo']);
         if (isset($_SESSION['carrinho'][$id_remover])) {
@@ -104,6 +103,7 @@ if (!empty($_SESSION['carrinho'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrinho - PedeJá</title>
     <link rel="stylesheet" href="css/artigos.css">
+    <link rel="stylesheet" href="css/carrinho.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -153,7 +153,9 @@ if (!empty($_SESSION['carrinho'])) {
                 <h2>Olá, <br><strong><?php echo htmlspecialchars($nome_utilizador); ?>!</strong></h2>
             </header>
             </header>
+
             <div class="contentor-carrinho">
+                
                 <div class="cabecalho-carrinho">
                     <h3>Meu pedido:</h3>
                     <hr class="divisor" style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
