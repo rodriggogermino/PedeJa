@@ -38,7 +38,9 @@ O nosso site esta online em  https://rodgui.antrob.eu
 
 ### 🖊️ Desenvolvedores 
 
-> Guilherme Henriques    
-> Rodrigo Germino
 > Bernardo Mendes
+>
+> Guilherme Henriques
+>   
+> Rodrigo Germino
 
