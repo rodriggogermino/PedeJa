@@ -33,10 +33,12 @@ Por outro lado, a aplicação também se destina aos funcionários do bar, ajuda
 6. Notificações: O utilizador recebe informação quando o estado do pedido muda;
 7. Histórico de pedidos: Possibilidade de consultar pedidos anteriores e favoritá-los;
 
-#
+### 👀 Online
+O nosso site esta online em  https://rodgui.antrob.eu
 
 ### 🖊️ Desenvolvedores 
 
 > Guilherme Henriques    
 > Rodrigo Germino
+> Bernardo Mendes
 
